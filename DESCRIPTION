@@ -1,0 +1,27 @@
+Package: fmpapi
+Type: Package
+Title: Financial Modeling Prep API Client
+Version: 0.1.0
+Authors@R: 
+    person(given = "Christoph",
+           family = "Scheuch",
+           role = c("aut", "cre", "cph"),
+           email = "christoph.scheuch@gmail.com",
+           comment = c(ORCID = "0009-0004-0423-6819"))
+Description: An R client for the Financial Modeling Prep (FMP) API. 
+    This package allows users to easily fetch financial data such as company profiles, 
+    balance sheet statements, income statements, and cash flow statements, 
+    using the FMP API. Functions return tidy data frames with snake_case column names, 
+    making it easy to integrate the results into common workflows.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    httr2 (>= 1.0.0),
+    dplyr (>= 1.0.0),
+    cli (>= 1.0.0)
+RoxygenNote: 7.3.2
+Suggests: 
+    testthat (>= 3.0.0)
+URL: https://github.com/tidy-intelligence/r-fmpapi
+BugReports: https://github.com/tidy-intelligence/r-fmpapi/issues
