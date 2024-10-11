@@ -21,7 +21,7 @@ Currently, `fmpapi` is not on CRAN. You can install the development
 version from GitHub:
 
 ``` r
-pak::pak("tidy-intelligence/r-fmpapi")
+pak::pak("tidy-finance/r-fmpapi")
 ```
 
 ## Setup

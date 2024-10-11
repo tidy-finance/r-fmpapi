@@ -11,13 +11,13 @@ An R client for the Financial Modeling Prep (FMP) API. This package allows users
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/tidy-intelligence/r-fmpapi}
-  \item Report bugs at \url{https://github.com/tidy-intelligence/r-fmpapi/issues}
+  \item \url{https://github.com/tidy-finance/r-fmpapi}
+  \item Report bugs at \url{https://github.com/tidy-finance/r-fmpapi/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Christoph Scheuch \email{christoph.scheuch@gmail.com} (\href{https://orcid.org/0009-0004-0423-6819}{ORCID}) [copyright holder]
+\strong{Maintainer}: Christoph Scheuch \email{christoph@tidy-intelligence.com} (\href{https://orcid.org/0009-0004-0423-6819}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}

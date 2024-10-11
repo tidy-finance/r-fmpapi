@@ -2,7 +2,7 @@
 
 ## Initial Release
 
-- Added function `set_fmp_api_key()` to store and manage Financial Modeling Prep (FMP) API keys securely in the `.Renviron` file.
+- Added function `set_fmp_api_key()` to store and manage Financial Modeling Prep (FMP) API keys securely in an `.Renviron` file.
 - Introduced the core data retrieval functions:
   - `get_company_profile()` to retrieve a company's profile based on its stock symbol.
   - `get_balance_sheet_statements()` to fetch balance sheet statements (annual or quarterly) for a specific stock symbol.
