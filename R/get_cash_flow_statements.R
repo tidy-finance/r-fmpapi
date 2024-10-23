@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_cash_flow_statements("AAPL", period = "annual", limit = 10)
+#' get_cash_flow_statements("AAPL", period = "annual", limit = 5)
 #' }
 #'
 get_cash_flow_statements <- function(
@@ -46,7 +46,8 @@ get_cash_flow_statements <- function(
 
   cash_flow_statements <-cash_flow_statements_raw |>
     bind_rows() |>
-    convert_column_names()
+    convert_column_names() |>
+    convert_column_types()
 
   cash_flow_statements
 }

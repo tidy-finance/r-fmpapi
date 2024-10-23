@@ -46,7 +46,8 @@ get_balance_sheet_statements <- function(
 
   balance_sheet_statements <- balance_sheet_statements_raw |>
     bind_rows() |>
-    convert_column_names()
+    convert_column_names() |>
+    convert_column_types()
 
   balance_sheet_statements
 }

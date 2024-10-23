@@ -16,7 +16,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_income_statements("AAPL", period = "quarter", limit = 5)
+#' get_income_statements("AAPL", period = "annual", limit = 5)
 #' }
 #'
 get_income_statements <- function(
@@ -46,7 +46,8 @@ get_income_statements <- function(
 
   income_statements <- income_statements_raw |>
     bind_rows() |>
-    convert_column_names()
+    convert_column_names() |>
+    convert_column_types()
 
   income_statements
 }
