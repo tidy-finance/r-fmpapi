@@ -26,7 +26,7 @@ limit is not a positive integer. The response is processed into a tidy data fram
 }
 \examples{
 \dontrun{
-get_cash_flow_statements("AAPL", period = "annual", limit = 10)
+get_cash_flow_statements("AAPL", period = "annual", limit = 5)
 }
 
 }
