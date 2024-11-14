@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_market_cap_historical("AAPL", "2020-01-01", "2020-12-31")
+#' get_market_cap_historical("UNH", "2023-12-01", "2023-12-31")
 #' }
 #'
 get_market_cap_historical <- function(symbol, start_date, end_date) {
