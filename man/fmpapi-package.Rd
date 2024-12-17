@@ -4,9 +4,9 @@
 \name{fmpapi-package}
 \alias{fmpapi}
 \alias{fmpapi-package}
-\title{fmpapi: Financial Modeling Prep API Client}
+\title{fmpapi: Tidy Financial Modeling Prep API Client}
 \description{
-An R client for the Financial Modeling Prep (FMP) API. This package allows users to easily fetch financial data such as company profiles, balance sheet statements, income statements, and cash flow statements, using the FMP API. Functions return tidy data frames with snake_case column names, making it easy to integrate the results into common workflows.
+Tidy client for the Financial Modeling Prep (FMP) API \url{https://site.financialmodelingprep.com/developer/docs}. This package allows users to easily fetch financial data such as company profiles, balance sheet statements, income statements, and cash flow statements, using the FMP API. Functions return tidy data frames with snake_case column names, making it easy to integrate the results into common workflows.
 }
 \seealso{
 Useful links:

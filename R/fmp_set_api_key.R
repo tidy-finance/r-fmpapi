@@ -12,7 +12,7 @@
 #'
 #' @export
 #'
-set_fmp_api_key <- function() {
+fmp_set_api_key <- function() {
   fmp_api_key <- readline(prompt = "Enter your FMP API key: ")
 
   location_choice <- readline(
