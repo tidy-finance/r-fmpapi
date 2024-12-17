@@ -1,14 +1,13 @@
-#' Get income statements from the Financial Modeling Prep API
+#' Get Income Statements from the Financial Modeling Prep API
 #'
-#' This function retrieves the income statements for a specified stock symbol from the Financial Modeling Prep (FMP) API.
+#' This function retrieves the income statements for a specified stock symbol
+#' from the Financial Modeling Prep (FMP) API.
 #'
 #' @param symbol A character string representing a single stock symbol.
-#' @param period A character string specifying the period for the statements. Can be either "annual" (default) or "quarter".
-#' @param limit An integer specifying the maximum number of records to retrieve. Defaults to 100. Must be a positive integer.
-#'
-#' @details The function sends a request to the FMP API to fetch income statements for the provided stock symbol.
-#' The period can be set to either "annual" or "quarter". The function returns an error if the period is invalid or if the
-#' limit is not a positive integer. The response is processed into a tidy data frame with snake_case column names.
+#' @param period A character string specifying the period for the statements.
+#'  Can be either "annual" (default) or "quarter".
+#' @param limit An integer specifying the maximum number of records to retrieve.
+#'  Defaults to 5. Must be a positive integer.
 #'
 #' @return A data frame containing the income statements.
 #'
@@ -20,9 +19,7 @@
 #' }
 #'
 get_income_statements <- function(
-    symbol,
-    period = "annual",
-    limit = 100
+  symbol, period = "annual", limit = 100
 ) {
 
   if (length(symbol) != 1) {
@@ -42,7 +39,9 @@ get_income_statements <- function(
   }
 
   resource <- paste0("income-statement/", symbol)
-  income_statements_raw <- perform_request(resource, period = period, limit = limit)
+  income_statements_raw <- perform_request(
+    resource, period = period, limit = limit
+  )
 
   income_statements <- income_statements_raw |>
     bind_rows() |>
@@ -51,4 +50,3 @@ get_income_statements <- function(
 
   income_statements
 }
-

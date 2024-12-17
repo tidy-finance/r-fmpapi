@@ -3,13 +3,12 @@
 #' Retrieves historical market capitalization data for a specified symbol
 #' within a defined date range.
 #'
-#' @param symbol Character. The stock ticker symbol of the company for which to retrieve market capitalization data.
-#' @param start_date Date. The start date for the data retrieval in "YYYY-MM-DD" format.
-#' @param end_date Date. The end date for the data retrieval in "YYYY-MM-DD" format.
-#'
-#' @return A tibble with historical market capitalization data, arranged by date.
-#' @details The function queries an API to obtain market capitalization data for the specified `symbol` between `start_date` and `end_date`.
-#' The data is returned as a tibble with appropriately converted column names and types.
+#' @param symbol Character. The stock ticker symbol of the company for which to
+#'  retrieve market capitalization data.
+#' @param start_date Date. The start date for the data retrieval in
+#'  "YYYY-MM-DD" format.
+#' @param end_date Date. The end date for the data retrieval in
+#'  "YYYY-MM-DD" format.
 #'
 #' @export
 #'
@@ -18,7 +17,9 @@
 #' get_market_cap_historical("UNH", "2023-12-01", "2023-12-31")
 #' }
 #'
-get_market_cap_historical <- function(symbol, start_date, end_date) {
+get_market_cap_historical <- function(
+  symbol, start_date, end_date
+) {
 
   market_cap_historical_raw <- perform_request(
     resource = paste0("historical-market-capitalization/", symbol),

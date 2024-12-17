@@ -1,7 +1,4 @@
-#' Convert column names to snake_case
-#'
-#' This function converts the column names of a data frame from camelCase to snake_case by
-#' inserting underscores between lowercase and uppercase letters and converting all letters to lowercase.
+#' Convert Column Names to snake_case
 #'
 #' @param df A data frame whose column names are to be converted.
 #'

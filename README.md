@@ -8,12 +8,14 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 ## Overview
 
-`fmpapi` is an R package that provides a simple interface to the
-Financial Modeling Prep (FMP) API. With this package, you can easily
-retrieve financial data such as company profiles, balance sheet
-statements, income statements, and cash flow statements. The package
-returns data as tidy data frames, with snake_case column names, making
-it easier to integrate into your data analysis workflows.
+`fmpapi` is an R package that provides a tidy interface to the
+[Financial Modeling Prep (FMP)
+API](https://site.financialmodelingprep.com/developer/docs). With this
+package, you can easily retrieve financial data such as company
+profiles, balance sheet statements, income statements, and cash flow
+statements. The package returns data as tidy data frames, with
+snake_case column names, making it easier to integrate into your data
+analysis workflows.
 
 ## Installation
 
