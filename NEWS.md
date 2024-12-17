@@ -1,5 +1,9 @@
 # fmpapi (development version)
 
+## Improvements
+
+- Refactored core data retrieval functions to a single flexible interface: `fmp_get()`
+
 # fmpapi 0.1.0
 
 ## Initial Release
