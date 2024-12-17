@@ -12,15 +12,9 @@
 #'
 #' @export
 #'
-set_fmp_api_key <- function() {
-  fmp_api_key <- readline(prompt = "Enter your FMP API key: ")
-
-  location_choice <- readline(
-    prompt = paste0(
-      "Where do you want to store the .Renviron file? ",
-      "Enter 'project' for project directory or 'home' for home directory: "
-    )
-  )
+fmp_set_api_key <- function() { # nocov start
+  fmp_api_key <- prompt_api_key()
+  location_choice <- prompt_location()
 
   if (tolower(location_choice) == "project") {
     renviron_path <- file.path(getwd(), ".Renviron")
@@ -47,12 +41,7 @@ set_fmp_api_key <- function() {
   fmp_api_key_exists <- any(grepl("^FMP_API_KEY=", env_lines))
 
   if (fmp_api_key_exists) {
-    overwrite_choice <- readline(
-      prompt = paste0(
-        "API key already exist. Do you want to overwrite it? ",
-        "Enter 'yes' or 'no': "
-      )
-    )
+    overwrite_choice <- prompt_overwrite()
     if (tolower(overwrite_choice) != "yes") {
       cli::cli_inform("Aborted. API key already exist and is not overwritten.")
       return(invisible(TRUE))
@@ -60,12 +49,7 @@ set_fmp_api_key <- function() {
   }
 
   if (file.exists(gitignore_path)) {
-    add_gitignore <- readline(
-      prompt = paste0(
-        "Do you want to add .Renviron to .gitignore? ",
-        "It is highly recommended! Enter 'yes' or 'no': "
-      )
-    )
+    add_gitignore <- prompt_gitignore()
     if (tolower(add_gitignore) == "yes") {
       gitignore_lines <- readLines(gitignore_path)
       if (!any(grepl("^\\.Renviron$", gitignore_lines))) {
@@ -99,3 +83,40 @@ set_fmp_api_key <- function() {
     )
   )
 }
+
+#' @keywords internal
+prompt_api_key <- function(
+  api_key = readline(prompt = "Enter your FMP API key: ")
+) {
+  api_key
+}
+
+#' @keywords internal
+prompt_location <- function(location = readline(
+  prompt = paste0(
+    "Where do you want to store the .Renviron file? ",
+    "Enter 'project' for project directory or 'home' for home directory: "
+  )
+)) {
+  location
+}
+
+#' @keywords internal
+prompt_gitignore <- function(gitignore = readline(
+  prompt = paste0(
+    "Do you want to add .Renviron to .gitignore? ",
+    "It is highly recommended! Enter 'yes' or 'no': "
+  )
+)) {
+  gitignore
+}
+
+#' @keywords internal
+prompt_overwrite <- function(overwrite = readline(
+  prompt = paste0(
+    "API key already exist. Do you want to overwrite it? ",
+    "Enter 'yes' or 'no': "
+  )
+)) {
+  overwrite
+} # nocov end

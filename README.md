@@ -3,19 +3,29 @@
 
 # fmpapi
 
+<!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi)
+[![R-CMD-check](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml)
+[![Lint](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/tidy-finance/r-fmpapi/graph/badge.svg)](https://app.codecov.io/gh/tidy-finance/r-fmpapi)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<!-- badges: end -->
+
 ## Overview
 
-`fmpapi` is an R package that provides a tidy interface to the
-[Financial Modeling Prep (FMP)
-API](https://site.financialmodelingprep.com/developer/docs). With this
-package, you can easily retrieve financial data such as company
-profiles, balance sheet statements, income statements, and cash flow
-statements. The package returns data as tidy data frames, with
-snake_case column names, making it easier to integrate into your data
-analysis workflows.
+A flexible and user-friendly interface to the [Financial Modeling Prep
+(FMP) API](https://site.financialmodelingprep.com/developer/docs). The
+package supports all available endpoints, making it easy to access
+financial data such as stock prices, company metrics, and economic
+indicators. Returned data is formatted in a tidy structure with
+snake_case column names.
 
 ## Installation
 
@@ -29,52 +39,58 @@ pak::pak("tidy-finance/r-fmpapi")
 ## Setup
 
 Before using the package, you need to set your Financial Modeling Prep
-API key. You can set it using the `set_fmp_api_key()` function, which
-saves the key to your `.Renviron` file for future use.
+API key. You can set it using the `fmp_set_api_key()` function, which
+saves the key to your `.Renviron` file for future use (either in your
+project or home folder).
 
 ``` r
 library(fmpapi)
 
-set_fmp_api_key()
+fmp_set_api_key()
 ```
 
 ## Usage
 
-### Fetching Company Profiles
+Since the FMP API has a myriad of enpoints and parameters, the package
+provides a single function to handle requests: `fmp_get()`.
 
-You can retrieve a company’s profile by providing its stock symbol:
+You can retrieve a company’s profile by providing its stock symbol to
+the `profile` endpoint:
 
 ``` r
-get_company_profile("AAPL")
+fmp_get(resource = "profile", symbol = "AAPL")
 ```
-
-### Fetching Balance Sheet Statements
 
 To retrieve the balance sheet statements for a company, use the
-`get_balance_sheet_statements()` function. You can specify whether to
-retrieve annual or quarterly data and the number of records.
+`balance-sheet-statement` endpoint You can specify whether to retrieve
+annual or quarterly data using the `period` parameter and the number of
+records via `limit`. Note that you need a paid account for quarterly
+data.
 
 ``` r
-get_balance_sheet_statements("AAPL", period = "annual", limit = 5)
+fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", period = "annual", limit = 5)
 ```
 
-### Fetching Income Statements
-
-The `get_income_statements()` function allows you to retrieve income
-statements for a specific stock symbol. You can specify the period and
-the limit of records to return.
+The `income-statement` endpoint allows you to retrieve income statements
+for a specific stock symbol.
 
 ``` r
-get_income_statements("MSFT", period = "annual", limit = 5)
+fmp_get(resource = "income-statement", symbol = "AAPL")
 ```
 
-### Fetching Cash Flow Statements
-
-You can fetch cash flow statements using the get_cash_flow_statements()
-function, specifying the period and the number of records to retrieve.
+You can fetch cash flow statements using the `cash-flow-statement`
+endpoint.
 
 ``` r
-get_cash_flow_statements("TSLA", period = "annual", limit = 5)
+fmp_get(resource = "cash-flow-statement", symbol = "AAPL")
+```
+
+Most free endpoints live under API version 3, but you can also control
+the api version in `fmp_get()`, which you need for some paid endpoints.
+For instance, the `symbol_change` endpoint:
+
+``` r
+fmp_get(resource = "symbol_change", api_version = "v4")
 ```
 
 ## Contributing
