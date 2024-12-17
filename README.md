@@ -18,8 +18,6 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 <!-- badges: end -->
 
-## Overview
-
 A flexible and user-friendly interface to the [Financial Modeling Prep
 (FMP) API](https://site.financialmodelingprep.com/developer/docs). The
 package supports all available endpoints, making it easy to access
