@@ -7,14 +7,14 @@
 fmp_set_api_key()
 }
 \value{
-Invisibly returns `TRUE` after saving the key or aborting the
-operation. The function will read the `.Renviron` file after saving,
+Invisibly returns \code{TRUE} after saving the key or aborting the
+operation. The function will read the \code{.Renviron} file after saving,
 allowing the environment variables to be immediately available. A restart of
 the R session is recommended.
 }
 \description{
 This function prompts the user to input their Financial Modeling Prep (FMP)
-API key and saves it to a `.Renviron` file, either in the project directory
-or the home directory. It also gives the user the option to add `.Renviron`
-to `.gitignore` for security purposes.
+API key and saves it to a \code{.Renviron} file, either in the project directory
+or the home directory. It also gives the user the option to add \code{.Renviron}
+to \code{.gitignore} for security purposes.
 }

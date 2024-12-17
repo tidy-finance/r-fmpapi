@@ -8,27 +8,27 @@ fmp_get(resource, symbol = NULL, ..., api_version = "v3")
 }
 \arguments{
 \item{resource}{A string indicating the API resource to query. Examples
-include `"balance-sheet-statement"`, `"income-statement"`,
-`"cash-flow-statement"`, `"historical-market-capitalization"`,
-`"profile"`, and `"stock/list"`.}
+include \code{"balance-sheet-statement"}, \code{"income-statement"},
+\code{"cash-flow-statement"}, \code{"historical-market-capitalization"},
+\code{"profile"}, and \code{"stock/list"}.}
 
 \item{symbol}{A string specifying the stock ticker symbol (optional).}
 
 \item{...}{Additional arguments to customize the query. Examples include:
 \itemize{
-  \item \code{limit}: An integer indicating the number of results to
-   return.
-  \item \code{period}: A string specifying the reporting period, such as
-  `"annual"` or `"quarterly"`.
-  \item \code{from}: A string in YYYY-MM-DD format indicating the start
-   date for historical queries.
-  \item \code{to}: A string in YYYY-MM-DD format indicating the end date
-  for historical queries.
-  \item \code{query}: A search string for querying stock information.
+\item \code{limit}: An integer indicating the number of results to
+return.
+\item \code{period}: A string specifying the reporting period, such as
+\code{"annual"} or \code{"quarterly"}.
+\item \code{from}: A string in YYYY-MM-DD format indicating the start
+date for historical queries.
+\item \code{to}: A string in YYYY-MM-DD format indicating the end date
+for historical queries.
+\item \code{query}: A search string for querying stock information.
 }}
 
 \item{api_version}{A string specifying the version of the FMP API to use.
-Defaults to `"v3"`.}
+Defaults to \code{"v3"}.}
 }
 \value{
 A data frame containing the balance sheet statements.
