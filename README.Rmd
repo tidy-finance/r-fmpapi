@@ -81,6 +81,13 @@ Most free endpoints live under API version 3, but you can also control the api v
 fmp_get(resource = "symbol_change", api_version = "v4")
 ```
 
+## Relation to Existing Packages
+
+There are two existing R packages that also provide an interface to the FMP API. Both packages lack flexibility because they provide dedicated functions for each endpoint, which means that users need to study both the FMP API docs and the package documentation and developers have to create new functions for each new endpoint. 
+
+- [fmpapi](https://github.com/jpiburn/fmpapi): not released on CRAN and last commit more than 3 years ago. 
+- [fmpcloudr](https://cran.r-project.org/web/packages/fmpcloudr/index.html): last updated on CRAN more than 3 years ago.
+
 ## Contributing
 
 Feel free to open issues or submit pull requests to improve the package. Contributions are welcome!
