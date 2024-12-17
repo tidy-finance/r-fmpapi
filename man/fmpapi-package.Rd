@@ -6,12 +6,13 @@
 \alias{fmpapi-package}
 \title{fmpapi: Flexible & Tidy Client for the Financial Modeling Prep API}
 \description{
-Client for the Financial Modeling Prep (FMP) API \url{https://site.financialmodelingprep.com/developer/docs} that supports all available resources and returns data in a tidy data format.
+A flexible and user-friendly interface to the Financial Modeling Prep (FMP) API \url{https://site.financialmodelingprep.com/developer/docs}. The package supports all available endpoints, making it easy to access financial data such as stock prices, company metrics, and economic indicators. Returned data is formatted in a tidy structure with snake_case column names.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/tidy-finance/r-fmpapi}
+  \item \url{https://tidy-finance.github.io/r-fmpapi/}
   \item Report bugs at \url{https://github.com/tidy-finance/r-fmpapi/issues}
 }
 

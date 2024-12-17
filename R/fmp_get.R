@@ -29,7 +29,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Get available balance sheet statements
 #' fmp_get(
 #'   resource = "balance-sheet-statement",
