@@ -124,6 +124,24 @@ test_that("perform_request throws error on non-200 response", {
   )
 })
 
+test_that("perform_request handles empty responses", {
+  my_mock <- function(req) {
+    response(
+      status_code = 200,
+      body = charToRaw("[]"),
+      headers = list("Content-Type" = "application/json")
+    )
+  }
+
+  with_mocked_responses(
+    my_mock,
+    expect_error(
+      perform_request(resource = "invalid-resource"),
+      "Response body is empty."
+    )
+  )
+})
+
 # Conversion tests --------------------------------------------------------
 
 test_that("convert_column_names converts names to snake_case", {

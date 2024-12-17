@@ -144,6 +144,8 @@ perform_request <- function(
   } else {
     body <- resp_body_json(resp)
 
+    validate_body(body)
+
     body
   }
 
@@ -183,6 +185,15 @@ validate_period <- function(period) {
 validate_limit <- function(limit) {
   if (!is.numeric(limit) || limit %% 1L != 0 || limit < 1L) {
     cli::cli_abort("{.arg limit} must be an integer larger than 0.")
+  }
+}
+
+#' @keywords internal
+validate_body <- function(body) {
+  if (length(body) == 0) {
+    cli::cli_abort(
+      "Response body is empty. Check your resource and parameter specification."
+    )
   }
 }
 
