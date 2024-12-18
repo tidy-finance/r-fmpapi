@@ -19,6 +19,17 @@
       ],
       "Hash": "470851b6d5d0ac559e9d01bb352b4021"
     },
+    "Rcpp": {
+      "Package": "Rcpp",
+      "Version": "1.0.12",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "methods",
+        "utils"
+      ],
+      "Hash": "5ea2700d21e038ace58269ecdbeb9ec0"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.1",
@@ -105,6 +116,13 @@
         "utils"
       ],
       "Hash": "b21916dd77a27642b447374a5d30ecf3"
+    },
+    "commonmark": {
+      "Package": "commonmark",
+      "Version": "1.9.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "5d8225445acb167abf7797de48b2ee3c"
     },
     "cpp11": {
       "Package": "cpp11",
@@ -347,6 +365,18 @@
         "withr"
       ],
       "Hash": "3ef5d07ec78803475a94367d71b40c41"
+    },
+    "hunspell": {
+      "Package": "hunspell",
+      "Version": "3.0.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "digest"
+      ],
+      "Hash": "e58f80d4c5b4f0bab1456956d6ca6aad"
     },
     "jquerylib": {
       "Package": "jquerylib",
@@ -685,6 +715,19 @@
         "rlang"
       ],
       "Hash": "d53dbfddf695303ea4ad66f86e99b95d"
+    },
+    "spelling": {
+      "Package": "spelling",
+      "Version": "2.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "commonmark",
+        "hunspell",
+        "knitr",
+        "xml2"
+      ],
+      "Hash": "e167300a047e21d28c754b00cbfc55ef"
     },
     "sys": {
       "Package": "sys",
