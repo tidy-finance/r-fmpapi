@@ -174,4 +174,3 @@ test_that("convert_column_types updates column types", {
   expect_s3_class(df_converted$date, "Date")
   expect_type(df_converted$value, "double")
 })
-
