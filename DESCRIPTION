@@ -1,6 +1,6 @@
 Package: fmpapi
 Type: Package
-Title: Flexible Client for the Financial Modeling Prep API
+Title: Flexible Client for the 'Financial Modeling Prep' API
 Version: 0.2.0
 Authors@R: 
     person(given = "Christoph",
@@ -8,8 +8,8 @@ Authors@R:
            role = c("aut", "cre", "cph"),
            email = "christoph@tidy-intelligence.com",
            comment = c(ORCID = "0009-0004-0423-6819"))
-Description: A flexible and user-friendly interface to the Financial 
-    Modeling Prep (FMP) API <https://site.financialmodelingprep.com/developer/docs>. 
+Description: A flexible and user-friendly interface to the 'Financial 
+    Modeling Prep' API <https://site.financialmodelingprep.com/developer/docs>. 
     The package supports all available endpoints, making it easy to access financial 
     data such as stock prices, company metrics, and economic indicators.
 License: MIT + file LICENSE
@@ -23,7 +23,9 @@ Imports:
     dplyr (>= 1.0.0),
     cli (>= 1.0.0)
 Suggests: 
+    spelling,
     testthat (>= 3.0.0)
 URL: https://github.com/tidy-finance/r-fmpapi, https://tidy-finance.github.io/r-fmpapi/
 BugReports: https://github.com/tidy-finance/r-fmpapi/issues
 Config/testthat/edition: 3
+Language: en-US

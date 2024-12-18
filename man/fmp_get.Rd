@@ -20,7 +20,7 @@ include \code{"balance-sheet-statement"}, \code{"income-statement"},
 
 \item{symbol}{A string specifying the stock ticker symbol (optional).}
 
-\item{params}{Additional arguments to customize the query (optional).}
+\item{params}{List of additional arguments to customize the query (optional).}
 
 \item{api_version}{A string specifying the version of the FMP API to use.
 Defaults to \code{"v3"}.}
