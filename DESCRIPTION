@@ -8,10 +8,10 @@ Authors@R:
            role = c("aut", "cre", "cph"),
            email = "christoph@tidy-intelligence.com",
            comment = c(ORCID = "0009-0004-0423-6819"))
-Description: A flexible and user-friendly interface to the 'Financial 
-    Modeling Prep' API <https://site.financialmodelingprep.com/developer/docs>. 
-    The package supports all available endpoints, making it easy to access financial 
-    data such as stock prices, company metrics, and economic indicators.
+Description: Provides a flexible interface to the 'Financial Modeling Prep' API 
+    <https://site.financialmodelingprep.com/developer/docs>. The package 
+    supports all available endpoints and parameters, enabling R users 
+    to interact with a wide range of financial data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
