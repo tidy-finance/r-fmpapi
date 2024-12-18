@@ -46,7 +46,7 @@
 #'   resource = "historical-market-capitalization",
 #'   symbol = "UNH",
 #'   params = list(from = "2023-12-01", to = "2023-12-31")
-#'  )
+#' )
 #'
 #' # Get stock list
 #' fmp_get(
@@ -224,5 +224,12 @@ convert_column_names <- function(df) {
 convert_column_types <- function(df) {
   df |>
     mutate(across(contains("calendarYear"), as.integer),
-           across(c(contains("Date"), contains("date")), as.Date))
+           across(c(contains("Date"), contains("date")), function(x) {
+             posix_converted <- as.POSIXct(x, tz = "UTC")
+             has_time <- any(format(posix_converted, "%H:%M:%S") != "00:00:00")
+             if (!has_time) {
+               return(as.Date(x))
+             }
+             return(posix_converted)
+           }))
 }

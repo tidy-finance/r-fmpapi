@@ -63,7 +63,7 @@ fmp_get(
   resource = "historical-market-capitalization",
   symbol = "UNH",
   params = list(from = "2023-12-01", to = "2023-12-31")
- )
+)
 
 # Get stock list
 fmp_get(

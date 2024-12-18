@@ -6,7 +6,7 @@
 \alias{fmpapi-package}
 \title{fmpapi: Flexible Client for the 'Financial Modeling Prep' API}
 \description{
-A flexible and user-friendly interface to the 'Financial Modeling Prep' API \url{https://site.financialmodelingprep.com/developer/docs}. The package supports all available endpoints, making it easy to access financial data such as stock prices, company metrics, and economic indicators.
+Provides a flexible interface to the 'Financial Modeling Prep' API \url{https://site.financialmodelingprep.com/developer/docs}. The package supports all available endpoints and parameters, enabling R users to interact with a wide range of financial data.
 }
 \seealso{
 Useful links:
