@@ -1,32 +1,21 @@
-#' Retrieve Financial Data from the FMP API
+#' Retrieve Financial Data from the Financial Modeling Prep (FMP) API
 #'
-#' This function fetches financial data from the Financial Modeling Prep (FMP)
-#' API, including balance sheet statements, income statements, cash flow
-#' statements, historical market data, stock lists, and company profiles.
+#' This function fetches financial data from the FMP API, including
+#' balance sheet statements, income statements, cash flow statements,
+#' historical market data, stock lists, and company profiles.
 #'
 #' @param resource A string indicating the API resource to query. Examples
 #'  include `"balance-sheet-statement"`, `"income-statement"`,
 #'  `"cash-flow-statement"`, `"historical-market-capitalization"`,
 #'  `"profile"`, and `"stock/list"`.
 #' @param symbol A string specifying the stock ticker symbol (optional).
-#' @param ... Additional arguments to customize the query. Examples include:
-#'   \itemize{
-#'     \item \code{limit}: An integer indicating the number of results to
-#'      return.
-#'     \item \code{period}: A string specifying the reporting period, such as
-#'     `"annual"` or `"quarterly"`.
-#'     \item \code{from}: A string in YYYY-MM-DD format indicating the start
-#'      date for historical queries.
-#'     \item \code{to}: A string in YYYY-MM-DD format indicating the end date
-#'     for historical queries.
-#'     \item \code{query}: A search string for querying stock information.
-#'   }
+#' @param params List of additional arguments to customize the query (optional).
 #' @param api_version A string specifying the version of the FMP API to use.
 #'  Defaults to `"v3"`.
 #' @param snake_case A boolean indicating whether column names are converted
 #'  to snake_case. Defaults to `TRUE`.
 #'
-#' @return A data frame containing the balance sheet statements.
+#' @return A data frame containing the processed financial data.
 #'
 #' @export
 #'
@@ -42,22 +31,21 @@
 #' fmp_get(
 #'   resource = "income-statement",
 #'   symbol = "AAPL",
-#'   limit = 1
+#'   params = list(limit = 1)
 #' )
 #'
 #' # Get annual cash flow statements
 #' fmp_get(
 #'   resource = "cash-flow-statement",
 #'   symbol = "AAPL",
-#'   period = "annual"
+#'   params = list(period = "annual")
 #' )
 #'
 #' # Get historical market capitalization
 #' fmp_get(
 #'   resource = "historical-market-capitalization",
 #'   symbol = "UNH",
-#'   from = "2023-12-01",
-#'   to = "2023-12-31"
+#'   params = list(from = "2023-12-01", to = "2023-12-31")
 #'  )
 #'
 #' # Get stock list
@@ -72,7 +60,7 @@
 #'
 #' # Search for stock information
 #' fmp_get(
-#'   resource = "search", query = "AAP"
+#'   resource = "search", params = list(query = "AAP")
 #' )
 #'
 #' # Get data with original column names
@@ -82,10 +70,12 @@
 #' }
 #'
 fmp_get <- function(
-  resource, symbol = NULL, ..., api_version = "v3", snake_case = TRUE
+  resource,
+  symbol = NULL,
+  params = list(),
+  api_version = "v3",
+  snake_case = TRUE
 ) {
-
-  dots <- list(...)
 
   if (!is.null(symbol)) {
     validate_symbol(symbol)
@@ -94,16 +84,16 @@ fmp_get <- function(
     resource_processed <- resource
   }
 
-  if (!is.null(dots$limit)) {
-    validate_limit(dots$limit)
+  if (!is.null(params$limit)) {
+    validate_limit(params$limit)
   }
 
-  if (!is.null(dots$period)) {
-    validate_period(dots$period)
+  if (!is.null(params$period)) {
+    validate_period(params$period)
   }
 
   data_raw <- perform_request(
-    resource_processed, ...,  api_version =  api_version
+    resource_processed, params,  api_version =  api_version
   )
 
   data_processed <- data_raw |>
@@ -127,10 +117,10 @@ fmp_get <- function(
 #'
 #' @param resource The specific API resource to be accessed, such as a stock
 #'  symbol or financial endpoint.
+#' @param params Additional query parameters to be included in the API request.
 #' @param base_url The base URL for the FMP API. Defaults to
 #' "https://financialmodelingprep.com/api/".
 #' @param api_version The version of the FMP API to use. Defaults to "v3".
-#' @param ... Additional query parameters to be included in the API request.
 #'
 #' @return A parsed JSON response from the FMP API.
 #'
@@ -138,12 +128,12 @@ fmp_get <- function(
 #'
 perform_request <- function(
   resource,
+  params,
   base_url = "https://financialmodelingprep.com/api/",
-  api_version = "v3",
-  ...
+  api_version = "v3"
 ) {
 
-  req <- create_request(base_url, api_version, resource, ...)
+  req <- create_request(base_url, api_version, resource, params)
 
   resp <- req |>
     req_perform()
@@ -163,11 +153,11 @@ perform_request <- function(
 }
 
 #' @keywords internal
-create_request <- function(base_url, api_version, resource, ...) {
+create_request <- function(base_url, api_version, resource, params) {
   request(base_url) |>
     req_url_path_append(api_version) |>
     req_url_path_append(resource) |>
-    req_url_query(apikey = Sys.getenv("FMP_API_KEY"), ...) |>
+    req_url_query(apikey = Sys.getenv("FMP_API_KEY"), !!!params) |>
     req_user_agent(
       "fmpapi R package (https://github.com/tidy-finance/r-fmpapi)"
     ) |>
@@ -234,5 +224,5 @@ convert_column_names <- function(df) {
 convert_column_types <- function(df) {
   df |>
     mutate(across(contains("calendarYear"), as.integer),
-           across(contains("date"), as.Date))
+           across(c(contains("Date"), contains("date")), as.Date))
 }

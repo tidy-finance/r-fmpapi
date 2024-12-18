@@ -4,13 +4,17 @@
 test_that("fmp_get validates limit correctly", {
   expect_error(
     fmp_get(
-      resource = "balance-sheet-statement", symbol = "AAPL", limit = -1
+      resource = "balance-sheet-statement",
+      symbol = "AAPL",
+      params = list(limit = -1)
     ),
     "limit.*must be an integer larger than 0"
   )
   expect_error(
     fmp_get(
-      resource = "balance-sheet-statement", symbol = "AAPL", limit = "ten"
+      resource = "balance-sheet-statement",
+      symbol = "AAPL",
+      params = list(limit = "ten")
     ),
     "limit.*must be an integer larger than 0"
   )
@@ -19,7 +23,9 @@ test_that("fmp_get validates limit correctly", {
 test_that("fmp_get validates period input", {
   expect_error(
     fmp_get(
-      resource = "cash-flow-statement", symbol = "AAPL", period = "monthly"
+      resource = "cash-flow-statement",
+      symbol = "AAPL",
+      params = list(period = "monthly")
     ),
     "period.*must be either 'annual' or 'quarter'"
   )
@@ -118,7 +124,7 @@ test_that("perform_request throws error on non-200 response", {
   with_mocked_responses(
     my_mock,
     expect_error(
-      perform_request(resource = "invalid-resource"),
+      perform_request(resource = "invalid-resource", params = list()),
       "Invalid request"
     )
   )
@@ -136,7 +142,7 @@ test_that("perform_request handles empty responses", {
   with_mocked_responses(
     my_mock,
     expect_error(
-      perform_request(resource = "invalid-resource"),
+      perform_request(resource = "invalid-resource", params = list()),
       "Response body is empty."
     )
   )
@@ -168,3 +174,4 @@ test_that("convert_column_types updates column types", {
   expect_s3_class(df_converted$date, "Date")
   expect_type(df_converted$value, "double")
 })
+

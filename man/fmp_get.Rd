@@ -2,9 +2,15 @@
 % Please edit documentation in R/fmp_get.R
 \name{fmp_get}
 \alias{fmp_get}
-\title{Retrieve Financial Data from the FMP API}
+\title{Retrieve Financial Data from the Financial Modeling Prep (FMP) API}
 \usage{
-fmp_get(resource, symbol = NULL, ..., api_version = "v3", snake_case = TRUE)
+fmp_get(
+  resource,
+  symbol = NULL,
+  params = list(),
+  api_version = "v3",
+  snake_case = TRUE
+)
 }
 \arguments{
 \item{resource}{A string indicating the API resource to query. Examples
@@ -14,18 +20,7 @@ include \code{"balance-sheet-statement"}, \code{"income-statement"},
 
 \item{symbol}{A string specifying the stock ticker symbol (optional).}
 
-\item{...}{Additional arguments to customize the query. Examples include:
-\itemize{
-\item \code{limit}: An integer indicating the number of results to
-return.
-\item \code{period}: A string specifying the reporting period, such as
-\code{"annual"} or \code{"quarterly"}.
-\item \code{from}: A string in YYYY-MM-DD format indicating the start
-date for historical queries.
-\item \code{to}: A string in YYYY-MM-DD format indicating the end date
-for historical queries.
-\item \code{query}: A search string for querying stock information.
-}}
+\item{params}{Additional arguments to customize the query (optional).}
 
 \item{api_version}{A string specifying the version of the FMP API to use.
 Defaults to \code{"v3"}.}
@@ -34,12 +29,12 @@ Defaults to \code{"v3"}.}
 to snake_case. Defaults to \code{TRUE}.}
 }
 \value{
-A data frame containing the balance sheet statements.
+A data frame containing the processed financial data.
 }
 \description{
-This function fetches financial data from the Financial Modeling Prep (FMP)
-API, including balance sheet statements, income statements, cash flow
-statements, historical market data, stock lists, and company profiles.
+This function fetches financial data from the FMP API, including
+balance sheet statements, income statements, cash flow statements,
+historical market data, stock lists, and company profiles.
 }
 \examples{
 \dontrun{
@@ -53,22 +48,21 @@ fmp_get(
 fmp_get(
   resource = "income-statement",
   symbol = "AAPL",
-  limit = 1
+  params = list(limit = 1)
 )
 
 # Get annual cash flow statements
 fmp_get(
   resource = "cash-flow-statement",
   symbol = "AAPL",
-  period = "annual"
+  params = list(period = "annual")
 )
 
 # Get historical market capitalization
 fmp_get(
   resource = "historical-market-capitalization",
   symbol = "UNH",
-  from = "2023-12-01",
-  to = "2023-12-31"
+  params = list(from = "2023-12-01", to = "2023-12-31")
  )
 
 # Get stock list
@@ -83,7 +77,7 @@ fmp_get(
 
 # Search for stock information
 fmp_get(
-  resource = "search", query = "AAP"
+  resource = "search", params = list(query = "AAP")
 )
 
 # Get data with original column names

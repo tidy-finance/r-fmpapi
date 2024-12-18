@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# fmpapi
+# r-fmpapi
 
 <!-- badges: start -->
 <!-- [![CRAN status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
@@ -25,7 +25,9 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-A flexible and user-friendly interface to the [Financial Modeling Prep (FMP) API](https://site.financialmodelingprep.com/developer/docs). The package supports all available endpoints, making it easy to access financial data such as stock prices, company metrics, and economic indicators. Returned data is formatted in a tidy structure with snake_case column names.
+A flexible and user-friendly interface to the [Financial Modeling Prep (FMP) API](https://site.financialmodelingprep.com/developer/docs) in R. The package supports all available endpoints, making it easy to access financial data such as stock prices, company metrics, and economic indicators.
+
+This package is a product of Christoph Scheuch and not sponsored by or affiliated with FMP in any way. For a Python implementation, please consider the [`py-fmpapi`](https://github.com/tidy-finance/r-fmpapi) library.
 
 ## Installation
 
@@ -61,10 +63,10 @@ You can retrieve a company’s profile by providing its stock symbol to the `pro
 fmp_get(resource = "profile", symbol = "AAPL")
 ```
 
-To retrieve the balance sheet statements for a company, use the `balance-sheet-statement` endpoint You can specify whether to retrieve annual or quarterly data using the `period` parameter and the number of records via `limit`. Note that you need a paid account for quarterly data. 
+To retrieve the balance sheet statements for a company, use the `balance-sheet-statement` endpoint. You can specify whether to retrieve annual or quarterly data using the `period` parameter and the number of records via `limit`. Note that you need a paid account for quarterly data. 
 
 ```r
-fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", period = "annual", limit = 5)
+fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", params = list(period = "annual", limit = 5))
 ```
 
 The `income-statement` endpoint allows you to retrieve income statements for a specific stock symbol. 
