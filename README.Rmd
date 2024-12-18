@@ -55,7 +55,7 @@ fmp_set_api_key()
 
 ## Usage
 
-Since the FMP API has a myriad of enpoints and parameters, the package provides a single function to handle requests: `fmp_get()`.
+Since the FMP API has a myriad of endpoints and parameters, the package provides a single function to handle requests: `fmp_get()`.
 
 You can retrieve a company’s profile by providing its stock symbol to the `profile` endpoint:
 

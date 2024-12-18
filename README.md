@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# fmpapi
+# r-fmpapi
 
 <!-- badges: start -->
 <!-- [![CRAN status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
@@ -17,11 +17,15 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 <!-- badges: end -->
 
 A flexible and user-friendly interface to the [Financial Modeling Prep
-(FMP) API](https://site.financialmodelingprep.com/developer/docs). The
-package supports all available endpoints, making it easy to access
+(FMP) API](https://site.financialmodelingprep.com/developer/docs) in R.
+The package supports all available endpoints, making it easy to access
 financial data such as stock prices, company metrics, and economic
-indicators. Returned data is formatted in a tidy structure with
-snake_case column names.
+indicators.
+
+This package is a product of Christoph Scheuch and not sponsored by or
+affiliated with FMP in any way. For a Python implementation, please
+consider the [`py-fmpapi`](https://github.com/tidy-finance/r-fmpapi)
+library.
 
 ## Installation
 
@@ -52,7 +56,7 @@ fmp_set_api_key()
 
 ## Usage
 
-Since the FMP API has a myriad of enpoints and parameters, the package
+Since the FMP API has a myriad of endpoints and parameters, the package
 provides a single function to handle requests: `fmp_get()`.
 
 You can retrieve a company’s profile by providing its stock symbol to
@@ -63,13 +67,13 @@ fmp_get(resource = "profile", symbol = "AAPL")
 ```
 
 To retrieve the balance sheet statements for a company, use the
-`balance-sheet-statement` endpoint You can specify whether to retrieve
+`balance-sheet-statement` endpoint. You can specify whether to retrieve
 annual or quarterly data using the `period` parameter and the number of
 records via `limit`. Note that you need a paid account for quarterly
 data.
 
 ``` r
-fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", period = "annual", limit = 5)
+fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", params = list(period = "annual", limit = 5))
 ```
 
 The `income-statement` endpoint allows you to retrieve income statements
