@@ -18,3 +18,10 @@ API key and saves it to a \code{.Renviron} file, either in the project directory
 or the home directory. It also gives the user the option to add \code{.Renviron}
 to \code{.gitignore} for security purposes.
 }
+\examples{
+\donttest{
+fmp_set_api_key()
+}
+
+
+}

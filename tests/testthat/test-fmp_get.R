@@ -146,25 +146,25 @@ test_that("perform_request handles empty responses", {
 
 test_that("convert_column_names converts names to snake_case", {
   df <- data.frame(
-    CalendarYear = 2023, DateValue = "2023-12-31", SymbolName = "AAPL"
+    calendarYear = 2023, Date = "2023-12-31", SymbolName = "AAPL"
   )
   df_converted <- convert_column_names(df)
 
   expect_equal(
-    names(df_converted), c("calendar_year", "date_value", "symbol_name")
+    names(df_converted), c("calendar_year", "date", "symbol_name")
   )
 })
 
 
 test_that("convert_column_types updates column types", {
   df <- data.frame(
-    calendar_year = c("2023", "2022"),
+    calendarYear = c("2023", "2022"),
     date = c("2023-12-31", "2022-12-31"),
     value = c(12345, 54321)
   )
   df_converted <- convert_column_types(df)
 
-  expect_type(df_converted$calendar_year, "integer")
+  expect_type(df_converted$calendarYear, "integer")
   expect_s3_class(df_converted$date, "Date")
   expect_type(df_converted$value, "double")
 })

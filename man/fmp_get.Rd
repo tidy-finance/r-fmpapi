@@ -4,7 +4,7 @@
 \alias{fmp_get}
 \title{Retrieve Financial Data from the FMP API}
 \usage{
-fmp_get(resource, symbol = NULL, ..., api_version = "v3")
+fmp_get(resource, symbol = NULL, ..., api_version = "v3", snake_case = TRUE)
 }
 \arguments{
 \item{resource}{A string indicating the API resource to query. Examples
@@ -29,6 +29,9 @@ for historical queries.
 
 \item{api_version}{A string specifying the version of the FMP API to use.
 Defaults to \code{"v3"}.}
+
+\item{snake_case}{A boolean indicating whether column names are converted
+to snake_case. Defaults to \code{TRUE}.}
 }
 \value{
 A data frame containing the balance sheet statements.
@@ -80,7 +83,12 @@ fmp_get(
 
 # Search for stock information
 fmp_get(
-  resource = "search", query = "AA"
+  resource = "search", query = "AAP"
+)
+
+# Get data with original column names
+fmp_get(
+  resource = "profile", symbol = "AAPL", snake_case = FALSE
 )
 }
 

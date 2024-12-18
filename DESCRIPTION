@@ -1,7 +1,7 @@
 Package: fmpapi
 Type: Package
-Title: Flexible & Tidy Client for the Financial Modeling Prep API 
-Version: 0.1.9.9001
+Title: Flexible Client for the Financial Modeling Prep API
+Version: 0.2.0
 Authors@R: 
     person(given = "Christoph",
            family = "Scheuch",
@@ -11,8 +11,7 @@ Authors@R:
 Description: A flexible and user-friendly interface to the Financial 
     Modeling Prep (FMP) API <https://site.financialmodelingprep.com/developer/docs>. 
     The package supports all available endpoints, making it easy to access financial 
-    data such as stock prices, company metrics, and economic indicators. Returned data 
-    is formatted in a tidy structure with snake_case column names.
+    data such as stock prices, company metrics, and economic indicators.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -23,6 +23,8 @@
 #'   }
 #' @param api_version A string specifying the version of the FMP API to use.
 #'  Defaults to `"v3"`.
+#' @param snake_case A boolean indicating whether column names are converted
+#'  to snake_case. Defaults to `TRUE`.
 #'
 #' @return A data frame containing the balance sheet statements.
 #'
@@ -70,12 +72,17 @@
 #'
 #' # Search for stock information
 #' fmp_get(
-#'   resource = "search", query = "AA"
+#'   resource = "search", query = "AAP"
+#' )
+#'
+#' # Get data with original column names
+#' fmp_get(
+#'   resource = "profile", symbol = "AAPL", snake_case = FALSE
 #' )
 #' }
 #'
 fmp_get <- function(
-  resource, symbol = NULL, ..., api_version = "v3"
+  resource, symbol = NULL, ..., api_version = "v3", snake_case = TRUE
 ) {
 
   dots <- list(...)
@@ -101,8 +108,12 @@ fmp_get <- function(
 
   data_processed <- data_raw |>
     bind_rows() |>
-    convert_column_names() |>
     convert_column_types()
+
+  if (snake_case) {
+    data_processed <- data_processed |>
+      convert_column_names()
+  }
 
   data_processed
 }
@@ -222,6 +233,6 @@ convert_column_names <- function(df) {
 #'
 convert_column_types <- function(df) {
   df |>
-    mutate(across(contains("calendar_year"), as.integer),
+    mutate(across(contains("calendarYear"), as.integer),
            across(contains("date"), as.Date))
 }

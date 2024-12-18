@@ -4,11 +4,9 @@
 # fmpapi
 
 <!-- badges: start -->
+<!-- [![CRAN status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
+<!-- [![CRAN downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
 
-[![CRAN
-status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi)
-[![CRAN
-downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi)
 [![R-CMD-check](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml)
 [![Lint](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml)
 [![Codecov test
@@ -27,8 +25,13 @@ snake_case column names.
 
 ## Installation
 
-Currently, `fmpapi` is not on CRAN. You can install the development
-version from GitHub:
+You can install the package from CRAN via:
+
+``` r
+install.packages("fmpapi")
+```
+
+You can install the development version from GitHub:
 
 ``` r
 pak::pak("tidy-finance/r-fmpapi")
@@ -101,8 +104,8 @@ create new functions for each new endpoint.
 
 - [fmpapi](https://github.com/jpiburn/fmpapi): not released on CRAN and
   last commit more than 3 years ago.
-- [fmpcloudr](https://cran.r-project.org/web/packages/fmpcloudr/index.html):
-  last updated on CRAN more than 3 years ago.
+- [fmpcloudr](https://cran.r-project.org/package=fmpcloudr): last
+  updated on CRAN more than 3 years ago.
 
 ## Contributing
 
