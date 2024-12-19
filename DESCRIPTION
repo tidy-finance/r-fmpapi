@@ -1,7 +1,7 @@
 Package: fmpapi
 Type: Package
 Title: Flexible Client for the 'Financial Modeling Prep' API
-Version: 0.2.0
+Version: 0.2.0.9000
 Authors@R: 
     person(given = "Christoph",
            family = "Scheuch",
