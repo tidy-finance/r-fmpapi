@@ -13,7 +13,7 @@ to .gitignore for security purposes."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">fmpapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +35,7 @@ to .gitignore for security purposes."></head><body>
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Set the Financial Modeling Prep API key</h1>
-      <small class="dont-index">Source: <a href="https://github.com/tidy-finance/r-fmpapi/blob/main/R/fmp_set_api_key.R" class="external-link"><code>R/fmp_set_api_key.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/tidy-finance/r-fmpapi/blob/v0.2.0/R/fmp_set_api_key.R" class="external-link"><code>R/fmp_set_api_key.R</code></a></small>
       <div class="d-none name"><code>fmp_set_api_key.Rd</code></div>
     </div>
 
@@ -59,6 +59,18 @@ allowing the environment variables to be immediately available. A restart of
 the R session is recommended.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">fmp_set_api_key</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Enter your FMP API key: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Where do you want to store the .Renviron file? Enter 'project' for project directory or 'home' for home directory: </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Invalid choice. Please start again and enter "project" or "home".</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

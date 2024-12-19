@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Flexible &amp; Tidy Client for the Financial Modeling Prep API • fmpapi</title>
+<title>Flexible Client for the Financial Modeling Prep API • fmpapi</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Flexible &amp; Tidy Client for the Financial Modeling Prep API">
-<meta name="description" content="A flexible and user-friendly interface to the Financial Modeling Prep (FMP) API &lt;https://site.financialmodelingprep.com/developer/docs&gt;. The package supports all available endpoints, making it easy to access financial data such as stock prices, company metrics, and economic indicators. Returned data is formatted in a tidy structure with snake_case column names.">
-<meta property="og:description" content="A flexible and user-friendly interface to the Financial Modeling Prep (FMP) API &lt;https://site.financialmodelingprep.com/developer/docs&gt;. The package supports all available endpoints, making it easy to access financial data such as stock prices, company metrics, and economic indicators. Returned data is formatted in a tidy structure with snake_case column names.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Flexible Client for the Financial Modeling Prep API">
+<meta name="description" content="Provides a flexible interface to the Financial Modeling Prep API &lt;https://site.financialmodelingprep.com/developer/docs&gt;. The package supports all available endpoints and parameters, enabling R users to interact with a wide range of financial data.">
+<meta property="og:description" content="Provides a flexible interface to the Financial Modeling Prep API &lt;https://site.financialmodelingprep.com/developer/docs&gt;. The package supports all available endpoints and parameters, enabling R users to interact with a wide range of financial data.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">fmpapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.9.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,24 +47,30 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="fmpapi">fmpapi<a class="anchor" aria-label="anchor" href="#fmpapi"></a>
+<div class="page-header"><h1 id="r-fmpapi">r-fmpapi<a class="anchor" aria-label="anchor" href="#r-fmpapi"></a>
 </h1></div>
 <!-- badges: start -->
+<!-- [![CRAN status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
+<!-- [![CRAN downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
 
 <!-- badges: end -->
-<p>A flexible and user-friendly interface to the <a href="https://site.financialmodelingprep.com/developer/docs" class="external-link">Financial Modeling Prep (FMP) API</a>. The package supports all available endpoints, making it easy to access financial data such as stock prices, company metrics, and economic indicators. Returned data is formatted in a tidy structure with snake_case column names.</p>
+<p>Provides a flexible interface to the <a href="https://site.financialmodelingprep.com/developer/docs" class="external-link">‘Financial Modeling Prep’ API</a>. The package supports all available endpoints and parameters, enabling R users to interact with a wide range of financial data.</p>
+<p>This package is a product of Christoph Scheuch and not sponsored by or affiliated with FMP in any way. For a Python implementation, please consider the <a href="https://github.com/tidy-finance/r-fmpapi" class="external-link"><code>py-fmpapi</code></a> library.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Currently, <code>fmpapi</code> is not on CRAN. You can install the development version from GitHub:</p>
+<p>You can install the package from CRAN via:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"fmpapi"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install the development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"tidy-finance/r-fmpapi"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h2>
 <p>Before using the package, you need to set your Financial Modeling Prep API key. You can set it using the <code><a href="reference/fmp_set_api_key.html">fmp_set_api_key()</a></code> function, which saves the key to your <code>.Renviron</code> file for future use (either in your project or home folder).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidy-finance/r-fmpapi" class="external-link">fmpapi</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/fmp_set_api_key.html">fmp_set_api_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -72,21 +78,21 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Since the FMP API has a myriad of enpoints and parameters, the package provides a single function to handle requests: <code><a href="reference/fmp_get.html">fmp_get()</a></code>.</p>
+<p>Since the FMP API has a myriad of endpoints and parameters, the package provides a single function to handle requests: <code><a href="reference/fmp_get.html">fmp_get()</a></code>.</p>
 <p>You can retrieve a company’s profile by providing its stock symbol to the <code>profile</code> endpoint:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"profile"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span></code></pre></div>
-<p>To retrieve the balance sheet statements for a company, use the <code>balance-sheet-statement</code> endpoint You can specify whether to retrieve annual or quarterly data using the <code>period</code> parameter and the number of records via <code>limit</code>. Note that you need a paid account for quarterly data.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"balance-sheet-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span>, period <span class="op">=</span> <span class="st">"annual"</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
-<p>The <code>income-statement</code> endpoint allows you to retrieve income statements for a specific stock symbol.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"profile"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span></code></pre></div>
+<p>To retrieve the balance sheet statements for a company, use the <code>balance-sheet-statement</code> endpoint. You can specify whether to retrieve annual or quarterly data using the <code>period</code> parameter and the number of records via <code>limit</code>. Note that you need a paid account for quarterly data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"balance-sheet-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>period <span class="op">=</span> <span class="st">"annual"</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>income-statement</code> endpoint allows you to retrieve income statements for a specific stock symbol.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"income-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span></code></pre></div>
 <p>You can fetch cash flow statements using the <code>cash-flow-statement</code> endpoint.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"cash-flow-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span></code></pre></div>
 <p>Most free endpoints live under API version 3, but you can also control the api version in <code><a href="reference/fmp_get.html">fmp_get()</a></code>, which you need for some paid endpoints. For instance, the <code>symbol_change</code> endpoint:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"symbol_change"</span>, api_version <span class="op">=</span> <span class="st">"v4"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -97,7 +103,7 @@
 <li>
 <a href="https://github.com/jpiburn/fmpapi" class="external-link">fmpapi</a>: not released on CRAN and last commit more than 3 years ago.</li>
 <li>
-<a href="https://cran.r-project.org/web/packages/fmpcloudr/index.html" class="external-link">fmpcloudr</a>: last updated on CRAN more than 3 years ago.</li>
+<a href="https://cran.r-project.org/package=fmpcloudr" class="external-link">fmpcloudr</a>: last updated on CRAN more than 3 years ago.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -114,6 +120,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=fmpapi" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/tidy-finance/r-fmpapi/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/tidy-finance/r-fmpapi/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -145,8 +152,6 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=fmpapi" class="external-link"><img src="https://www.r-pkg.org/badges/version/fmpapi" alt="CRAN status"></a></li>
-<li><a href="https://cran.r-project.org/package=fmpapi" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/fmpapi" alt="CRAN downloads"></a></li>
 <li><a href="https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml" class="external-link"><img src="https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml/badge.svg" alt="Lint"></a></li>
 <li><a href="https://app.codecov.io/gh/tidy-finance/r-fmpapi" class="external-link"><img src="https://codecov.io/gh/tidy-finance/r-fmpapi/graph/badge.svg" alt="Codecov test coverage"></a></li>
