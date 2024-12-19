@@ -38,7 +38,6 @@ test_that("fmp_get validates symbol input", {
   )
 })
 
-
 # Request handling tests --------------------------------------------------
 
 test_that("fmp_get parses response without symbol inputs", {
