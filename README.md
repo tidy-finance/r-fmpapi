@@ -4,9 +4,11 @@
 # r-fmpapi
 
 <!-- badges: start -->
-<!-- [![CRAN status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
-<!-- [![CRAN downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi)
 [![R-CMD-check](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml)
 [![Lint](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml)
 [![Codecov test
