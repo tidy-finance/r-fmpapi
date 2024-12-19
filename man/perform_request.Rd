@@ -6,21 +6,21 @@
 \usage{
 perform_request(
   resource,
+  params,
   base_url = "https://financialmodelingprep.com/api/",
-  api_version = "v3",
-  ...
+  api_version = "v3"
 )
 }
 \arguments{
 \item{resource}{The specific API resource to be accessed, such as a stock
 symbol or financial endpoint.}
 
+\item{params}{Additional query parameters to be included in the API request.}
+
 \item{base_url}{The base URL for the FMP API. Defaults to
 "https://financialmodelingprep.com/api/".}
 
 \item{api_version}{The version of the FMP API to use. Defaults to "v3".}
-
-\item{...}{Additional query parameters to be included in the API request.}
 }
 \value{
 A parsed JSON response from the FMP API.

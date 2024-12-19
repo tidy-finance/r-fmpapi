@@ -12,6 +12,12 @@
 #'
 #' @export
 #'
+#' @examples
+#' \donttest{
+#' fmp_set_api_key()
+#' }
+#'
+#'
 fmp_set_api_key <- function() { # nocov start
   fmp_api_key <- prompt_api_key()
   location_choice <- prompt_location()

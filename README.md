@@ -1,14 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# fmpapi
+# r-fmpapi
 
 <!-- badges: start -->
+<!-- [![CRAN status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
+<!-- [![CRAN downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi) -->
 
-[![CRAN
-status](https://www.r-pkg.org/badges/version/fmpapi)](https://cran.r-project.org/package=fmpapi)
-[![CRAN
-downloads](https://cranlogs.r-pkg.org/badges/fmpapi)](https://cran.r-project.org/package=fmpapi)
 [![R-CMD-check](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/R-CMD-check.yaml)
 [![Lint](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml/badge.svg)](https://github.com/tidy-finance/r-fmpapi/actions/workflows/lint.yaml)
 [![Codecov test
@@ -18,17 +16,25 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 
 <!-- badges: end -->
 
-A flexible and user-friendly interface to the [Financial Modeling Prep
-(FMP) API](https://site.financialmodelingprep.com/developer/docs). The
-package supports all available endpoints, making it easy to access
-financial data such as stock prices, company metrics, and economic
-indicators. Returned data is formatted in a tidy structure with
-snake_case column names.
+Provides a flexible interface to the [‘Financial Modeling Prep’
+API](https://site.financialmodelingprep.com/developer/docs). The package
+supports all available endpoints and parameters, enabling R users to
+interact with a wide range of financial data.
+
+This package is a product of Christoph Scheuch and not sponsored by or
+affiliated with FMP in any way. For a Python implementation, please
+consider the [`py-fmpapi`](https://github.com/tidy-finance/r-fmpapi)
+library.
 
 ## Installation
 
-Currently, `fmpapi` is not on CRAN. You can install the development
-version from GitHub:
+You can install the package from CRAN via:
+
+``` r
+install.packages("fmpapi")
+```
+
+You can install the development version from GitHub:
 
 ``` r
 pak::pak("tidy-finance/r-fmpapi")
@@ -49,7 +55,7 @@ fmp_set_api_key()
 
 ## Usage
 
-Since the FMP API has a myriad of enpoints and parameters, the package
+Since the FMP API has a myriad of endpoints and parameters, the package
 provides a single function to handle requests: `fmp_get()`.
 
 You can retrieve a company’s profile by providing its stock symbol to
@@ -60,13 +66,13 @@ fmp_get(resource = "profile", symbol = "AAPL")
 ```
 
 To retrieve the balance sheet statements for a company, use the
-`balance-sheet-statement` endpoint You can specify whether to retrieve
+`balance-sheet-statement` endpoint. You can specify whether to retrieve
 annual or quarterly data using the `period` parameter and the number of
 records via `limit`. Note that you need a paid account for quarterly
 data.
 
 ``` r
-fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", period = "annual", limit = 5)
+fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", params = list(period = "annual", limit = 5))
 ```
 
 The `income-statement` endpoint allows you to retrieve income statements
@@ -101,8 +107,8 @@ create new functions for each new endpoint.
 
 - [fmpapi](https://github.com/jpiburn/fmpapi): not released on CRAN and
   last commit more than 3 years ago.
-- [fmpcloudr](https://cran.r-project.org/web/packages/fmpcloudr/index.html):
-  last updated on CRAN more than 3 years ago.
+- [fmpcloudr](https://cran.r-project.org/package=fmpcloudr): last
+  updated on CRAN more than 3 years ago.
 
 ## Contributing
 
