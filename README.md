@@ -25,7 +25,7 @@ interact with a wide range of financial data.
 
 This package is a product of Christoph Scheuch and not sponsored by or
 affiliated with FMP in any way. For a Python implementation, please
-consider the [`py-fmpapi`](https://github.com/tidy-finance/r-fmpapi)
+consider the [`py-fmpapi`](https://github.com/tidy-finance/py-fmpapi)
 library.
 
 ## Installation

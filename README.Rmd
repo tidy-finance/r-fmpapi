@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 Provides a flexible interface to the ['Financial Modeling Prep' API](https://site.financialmodelingprep.com/developer/docs). The package supports all available endpoints and parameters, enabling R users to interact with a wide range of financial data.
 
-This package is a product of Christoph Scheuch and not sponsored by or affiliated with FMP in any way. For a Python implementation, please consider the [`py-fmpapi`](https://github.com/tidy-finance/r-fmpapi) library.
+This package is a product of Christoph Scheuch and not sponsored by or affiliated with FMP in any way. For a Python implementation, please consider the [`py-fmpapi`](https://github.com/tidy-finance/py-fmpapi) library.
 
 ## Installation
 
