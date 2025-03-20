@@ -23,7 +23,7 @@ API](https://site.financialmodelingprep.com/developer/docs). The package
 supports all available endpoints and parameters, enabling R users to
 interact with a wide range of financial data.
 
-> \[!TIP\] This package is developed by Christoph Scheuch and not
+> :bulb: This package is developed by Christoph Scheuch and not
 > sponsored by or affiliated with FMP. However, you can get **15% off**
 > your FMP subscription by using [this affiliate
 > link](https://site.financialmodelingprep.com/pricing-plans?couponCode=tidyfinance).
