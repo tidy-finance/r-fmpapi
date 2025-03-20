@@ -23,12 +23,12 @@ API](https://site.financialmodelingprep.com/developer/docs). The package
 supports all available endpoints and parameters, enabling R users to
 interact with a wide range of financial data.
 
-This package is developed by Christoph Scheuch and not sponsored by or
-affiliated with FMP. However, you can get **15% off** your FMP
-subscription by using [this affiliate
-link](https://site.financialmodelingprep.com/pricing-plans?couponCode=tidyfinance).
-By signing up through this link, you also support the development of
-this package at no extra cost to you.
+> \[!TIP\] This package is developed by Christoph Scheuch and not
+> sponsored by or affiliated with FMP. However, you can get **15% off**
+> your FMP subscription by using [this affiliate
+> link](https://site.financialmodelingprep.com/pricing-plans?couponCode=tidyfinance).
+> By signing up through this link, you also support the development of
+> this package at no extra cost to you.
 
 For a Python implementation, please consider the
 [`py-fmpapi`](https://github.com/tidy-finance/py-fmpapi) library.
