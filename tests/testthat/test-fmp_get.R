@@ -1,4 +1,3 @@
-
 # Validation tests --------------------------------------------------------
 
 test_that("fmp_get validates limit correctly", {
@@ -41,7 +40,6 @@ test_that("fmp_get validates symbol input", {
 # Request handling tests --------------------------------------------------
 
 test_that("fmp_get parses response without symbol inputs", {
-
   example_body <- c(
     '[{
     "symbol": "ABCX.US",
@@ -75,11 +73,9 @@ test_that("fmp_get parses response without symbol inputs", {
   )
 
   expect_type(result, "list")
-
 })
 
 test_that("fmp_get parses response with symbol inputs", {
-
   example_body <- c(
     '{
     "date": "2024-09-28",
@@ -108,7 +104,6 @@ test_that("fmp_get parses response with symbol inputs", {
   )
 
   expect_type(result, "list")
-
 })
 
 test_that("perform_request throws error on non-200 response", {
@@ -151,12 +146,15 @@ test_that("perform_request handles empty responses", {
 
 test_that("convert_column_names converts names to snake_case", {
   df <- data.frame(
-    calendarYear = 2023, Date = "2023-12-31", SymbolName = "AAPL"
+    calendarYear = 2023,
+    Date = "2023-12-31",
+    SymbolName = "AAPL"
   )
   df_converted <- convert_column_names(df)
 
   expect_equal(
-    names(df_converted), c("calendar_year", "date", "symbol_name")
+    names(df_converted),
+    c("calendar_year", "date", "symbol_name")
   )
 })
 

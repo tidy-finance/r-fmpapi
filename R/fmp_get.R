@@ -76,7 +76,6 @@ fmp_get <- function(
   api_version = "v3",
   snake_case = TRUE
 ) {
-
   if (!is.null(symbol)) {
     validate_symbol(symbol)
     resource_processed <- paste0(resource, "/", symbol)
@@ -93,7 +92,9 @@ fmp_get <- function(
   }
 
   data_raw <- perform_request(
-    resource_processed, params,  api_version =  api_version
+    resource_processed,
+    params,
+    api_version = api_version
   )
 
   data_processed <- data_raw |>
@@ -132,7 +133,6 @@ perform_request <- function(
   base_url = "https://financialmodelingprep.com/api/",
   api_version = "v3"
 ) {
-
   req <- create_request(base_url, api_version, resource, params)
 
   resp <- req |>
@@ -149,7 +149,6 @@ perform_request <- function(
 
     body
   }
-
 }
 
 #' @keywords internal
@@ -223,13 +222,15 @@ convert_column_names <- function(df) {
 #'
 convert_column_types <- function(df) {
   df |>
-    mutate(across(contains("calendarYear"), as.integer),
-           across(c(contains("Date"), contains("date")), function(x) {
-             posix_converted <- as.POSIXct(x, tz = "UTC")
-             has_time <- any(format(posix_converted, "%H:%M:%S") != "00:00:00")
-             if (!has_time) {
-               return(as.Date(x))
-             }
-             return(posix_converted)
-           }))
+    mutate(
+      across(contains("calendarYear"), as.integer),
+      across(c(contains("Date"), contains("date")), function(x) {
+        posix_converted <- as.POSIXct(x, tz = "UTC")
+        has_time <- any(format(posix_converted, "%H:%M:%S") != "00:00:00")
+        if (!has_time) {
+          return(as.Date(x))
+        }
+        posix_converted
+      })
+    )
 }
