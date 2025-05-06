@@ -2,6 +2,16 @@
 
 ## Improvements
 
+- Added error message in case of missing API key. 
+
+## Bug fixes
+
+- Fixed parsing of error messages for missing API keys.
+
+# fmpapi 0.2.0
+
+## Improvements
+
 - Refactored core data retrieval functions to a single flexible interface: `fmp_get()`
 
 # fmpapi 0.1.0

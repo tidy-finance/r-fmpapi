@@ -140,7 +140,7 @@ perform_request <- function(
 
   if (resp$status_code != 200) {
     cli::cli_abort(
-      resp_body_json(resp)
+      resp_body_json(resp)$`Error Message`
     )
   } else {
     body <- resp_body_json(resp)
@@ -153,6 +153,15 @@ perform_request <- function(
 
 #' @keywords internal
 create_request <- function(base_url, api_version, resource, params) {
+
+  # nocov start
+  if (Sys.getenv("FMP_API_KEY") == "") {
+    cli::cli_abort(
+      "Please set an API key using `fmp_set_api_key()`"
+    )
+  }
+  # nocov end
+
   request(base_url) |>
     req_url_path_append(api_version) |>
     req_url_path_append(resource) |>
