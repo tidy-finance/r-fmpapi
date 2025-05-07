@@ -92,6 +92,7 @@ fmp_set_api_key <- function() {
 }
 
 #' @keywords internal
+#' @noRd
 prompt_api_key <- function(
   api_key = readline(prompt = "Enter your FMP API key: ")
 ) {
@@ -99,6 +100,7 @@ prompt_api_key <- function(
 }
 
 #' @keywords internal
+#' @noRd
 prompt_location <- function(
   location = readline(
     prompt = paste0(
@@ -111,6 +113,7 @@ prompt_location <- function(
 }
 
 #' @keywords internal
+#' @noRd
 prompt_gitignore <- function(
   gitignore = readline(
     prompt = paste0(
@@ -123,6 +126,7 @@ prompt_gitignore <- function(
 }
 
 #' @keywords internal
+#' @noRd
 prompt_overwrite <- function(
   overwrite = readline(
     prompt = paste0(
