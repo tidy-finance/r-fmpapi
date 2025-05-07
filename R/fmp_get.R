@@ -154,7 +154,6 @@ perform_request <- function(
 #' @keywords internal
 #' @noRd
 create_request <- function(base_url, api_version, resource, params) {
-
   validate_api_key()
 
   request(base_url) |>
@@ -175,6 +174,8 @@ validate_api_key <- function() {
     cli::cli_abort(
       "Please set an API key using `fmp_set_api_key()`"
     )
+  } else {
+    invisible(TRUE)
   }
   # nocov end
 }
