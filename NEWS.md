@@ -3,6 +3,7 @@
 ## Improvements
 
 - Added error message in case of missing API key. 
+- Pruned documentation of internal functions. 
 
 ## Bug fixes
 

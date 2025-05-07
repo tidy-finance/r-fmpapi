@@ -126,7 +126,7 @@ fmp_get <- function(
 #' @return A parsed JSON response from the FMP API.
 #'
 #' @keywords internal
-#'
+#' @noRd
 perform_request <- function(
   resource,
   params,
@@ -152,15 +152,10 @@ perform_request <- function(
 }
 
 #' @keywords internal
+#' @noRd
 create_request <- function(base_url, api_version, resource, params) {
 
-  # nocov start
-  if (Sys.getenv("FMP_API_KEY") == "") {
-    cli::cli_abort(
-      "Please set an API key using `fmp_set_api_key()`"
-    )
-  }
-  # nocov end
+  validate_api_key()
 
   request(base_url) |>
     req_url_path_append(api_version) |>
@@ -173,6 +168,19 @@ create_request <- function(base_url, api_version, resource, params) {
 }
 
 #' @keywords internal
+#' @noRd
+validate_api_key <- function() {
+  # nocov start
+  if (Sys.getenv("FMP_API_KEY") == "") {
+    cli::cli_abort(
+      "Please set an API key using `fmp_set_api_key()`"
+    )
+  }
+  # nocov end
+}
+
+#' @keywords internal
+#' @noRd
 validate_symbol <- function(symbol) {
   if (length(symbol) != 1) {
     cli::cli_abort(
@@ -182,6 +190,7 @@ validate_symbol <- function(symbol) {
 }
 
 #' @keywords internal
+#' @noRd
 validate_period <- function(period) {
   if (!period %in% c("annual", "quarter")) {
     cli::cli_abort(
@@ -191,6 +200,7 @@ validate_period <- function(period) {
 }
 
 #' @keywords internal
+#' @noRd
 validate_limit <- function(limit) {
   if (!is.numeric(limit) || limit %% 1L != 0 || limit < 1L) {
     cli::cli_abort("{.arg limit} must be an integer larger than 0.")
@@ -198,6 +208,7 @@ validate_limit <- function(limit) {
 }
 
 #' @keywords internal
+#' @noRd
 validate_body <- function(body) {
   if (length(body) == 0) {
     cli::cli_abort(
@@ -213,7 +224,7 @@ validate_body <- function(body) {
 #' @return The data frame with its column names converted to snake_case.
 #'
 #' @keywords internal
-#'
+#' @noRd
 convert_column_names <- function(df) {
   new_names <- gsub("([a-z])([A-Z])", "\\1_\\2", names(df))
   new_names <- tolower(new_names)
@@ -228,7 +239,7 @@ convert_column_names <- function(df) {
 #' @return A data frame with updated column types.
 #'
 #' @keywords internal
-#'
+#' @noRd
 convert_column_types <- function(df) {
   df |>
     mutate(
