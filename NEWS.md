@@ -1,4 +1,4 @@
-# fmpapi (development version)
+# fmpapi 0.2.1
 
 ## Improvements
 
