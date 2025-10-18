@@ -191,3 +191,99 @@ test_that("convert_column_types updates column types", {
   expect_s3_class(df_converted$date, "Date")
   expect_type(df_converted$value, "double")
 })
+
+test_that("returns resource when symbol is NULL (no validation called)", {
+  expect_equal(
+    with_mocked_bindings(
+      build_resource("users", NULL, "stable"),
+      validate_symbol = function(x) stop("validate_symbol should not be called")
+    ),
+    "users"
+  )
+})
+
+test_that(
+  paste(
+    "returns resource unchanged for api_version == 'stable' with symbol"
+  ),
+  {
+    called <- 0
+    out <- with_mocked_bindings(
+      build_resource("users", "AAPL", "stable"),
+      validate_symbol = function(x) {
+        called <<- called + 1
+        invisible(TRUE)
+      }
+    )
+    expect_equal(out, "users")
+    expect_equal(called, 1)
+  }
+)
+
+test_that(
+  paste("appends symbol for non-stable api_version (validation called once)"),
+  {
+    called <- 0
+    out <- with_mocked_bindings(
+      build_resource("users", "AAPL", "beta"),
+      validate_symbol = function(x) {
+        called <<- called + 1
+        invisible(TRUE)
+      }
+    )
+    expect_equal(out, "users/AAPL")
+    expect_equal(called, 1)
+  }
+)
+
+test_that(
+  paste(
+    "keeps resource as-is when symbol is NULL for non-stable api_version"
+  ),
+  {
+    expect_equal(
+      with_mocked_bindings(
+        build_resource("users", NULL, "beta"),
+        validate_symbol = function(x) {
+          stop("validate_symbol should not be called")
+        }
+      ),
+      "users"
+    )
+  }
+)
+
+test_that("does not normalize slashes (current behavior preserved)", {
+  out <- with_mocked_bindings(
+    build_resource("users/", "AAPL", "beta"),
+    validate_symbol = function(x) invisible(TRUE)
+  )
+  expect_equal(out, "users//AAPL")
+})
+
+test_that("appends 'api/' for versions v1, v2, v3", {
+  expect_equal(build_base_url("https://ex.com/", "v1"), "https://ex.com/api/")
+  expect_equal(build_base_url("https://ex.com/", "v2"), "https://ex.com/api/")
+  expect_equal(build_base_url("https://ex.com/", "v3"), "https://ex.com/api/")
+})
+
+test_that("does not append for non-listed versions", {
+  expect_equal(build_base_url("https://ex.com/", "stable"), "https://ex.com/")
+  expect_equal(build_base_url("https://ex.com/", "beta"), "https://ex.com/")
+  expect_equal(build_base_url("https://ex.com/", "preview"), "https://ex.com/")
+})
+
+test_that("current behavior preserves base_url exactly ", {
+  expect_equal(build_base_url("https://ex.com", "v1"), "https://ex.comapi/")
+
+  expect_equal(build_base_url("https://ex.com/", "v1"), "https://ex.com/api/")
+
+  expect_equal(
+    build_base_url("https://ex.com/api/", "v1"),
+    "https://ex.com/api/api/"
+  )
+})
+
+test_that("NULL api_version errors (documenting current R semantics)", {
+  expect_error(build_base_url("https://ex.com/", NULL))
+})

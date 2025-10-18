@@ -76,16 +76,10 @@ fmp_get <- function(
   api_version = "stable",
   snake_case = TRUE
 ) {
-  if (!is.null(symbol)) {
-    validate_symbol(symbol)
-    if (api_version == "stable") {
-      resource_processed <- resource
-      params$symbol <- symbol
-    } else {
-      resource_processed <- paste0(resource, "/", symbol)
-    }
-  } else {
-    resource_processed <- resource
+  resource_processed <- build_resource(resource, symbol, api_version)
+
+  if (api_version == "stable" && !is.null(symbol)) {
+    params$symbol <- symbol
   }
 
   if (!is.null(params$limit)) {
@@ -114,6 +108,22 @@ fmp_get <- function(
   data_processed
 }
 
+#' @keywords internal
+#' @noRd
+build_resource <- function(resource, symbol, api_version) {
+  if (!is.null(symbol)) {
+    validate_symbol(symbol)
+    if (api_version == "stable") {
+      resource_processed <- resource
+    } else {
+      resource_processed <- paste0(resource, "/", symbol)
+    }
+  } else {
+    resource_processed <- resource
+  }
+  resource_processed
+}
+
 #' Perform a request to the Financial Modeling Prep API
 #'
 #' This function sends a request to the Financial Modeling Prep (FMP) API based
@@ -138,9 +148,7 @@ perform_request <- function(
   base_url = "https://financialmodelingprep.com/",
   api_version = "stable"
 ) {
-  if (api_version %in% c("v1", "v2", "v3")) {
-    base_url <- paste0(base_url, "api/")
-  }
+  base_url <- build_base_url(base_url, api_version)
 
   req <- create_request(base_url, api_version, resource, params)
 
@@ -158,6 +166,15 @@ perform_request <- function(
 
     body
   }
+}
+
+#' @keywords internal
+#' @noRd
+build_base_url <- function(base_url, api_version) {
+  if (api_version %in% c("v1", "v2", "v3")) {
+    base_url <- paste0(base_url, "api/")
+  }
+  base_url
 }
 
 #' @keywords internal
