@@ -4,13 +4,7 @@
 \alias{fmp_get}
 \title{Retrieve Financial Data from the Financial Modeling Prep (FMP) API}
 \usage{
-fmp_get(
-  resource,
-  symbol = NULL,
-  params = list(),
-  api_version = "v3",
-  snake_case = TRUE
-)
+fmp_get(resource, symbol = NULL, params = list(), snake_case = TRUE)
 }
 \arguments{
 \item{resource}{A string indicating the API resource to query. Examples
@@ -21,9 +15,6 @@ include \code{"balance-sheet-statement"}, \code{"income-statement"},
 \item{symbol}{A string specifying the stock ticker symbol (optional).}
 
 \item{params}{List of additional arguments to customize the query (optional).}
-
-\item{api_version}{A string specifying the version of the FMP API to use.
-Defaults to \code{"v3"}.}
 
 \item{snake_case}{A boolean indicating whether column names are converted
 to snake_case. Defaults to \code{TRUE}.}

@@ -1,5 +1,9 @@
 # fmpapi (development version)
 
+## Improvements
+
+- Add support for and default to stable API version. 
+
 # fmpapi 0.2.1
 
 ## Improvements

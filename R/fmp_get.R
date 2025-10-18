@@ -73,12 +73,17 @@ fmp_get <- function(
   resource,
   symbol = NULL,
   params = list(),
-  api_version = "v3",
+  api_version = "stable",
   snake_case = TRUE
 ) {
   if (!is.null(symbol)) {
     validate_symbol(symbol)
-    resource_processed <- paste0(resource, "/", symbol)
+    if (api_version == "stable") {
+      resource_processed <- resource
+      params$symbol <- symbol
+    } else {
+      resource_processed <- paste0(resource, "/", symbol)
+    }
   } else {
     resource_processed <- resource
   }
@@ -121,7 +126,7 @@ fmp_get <- function(
 #' @param params Additional query parameters to be included in the API request.
 #' @param base_url The base URL for the FMP API. Defaults to
 #' "https://financialmodelingprep.com/api/".
-#' @param api_version The version of the FMP API to use. Defaults to "v3".
+#' @param api_version The version of the FMP API to use. Defaults to "stable".
 #'
 #' @return A parsed JSON response from the FMP API.
 #'
@@ -130,9 +135,13 @@ fmp_get <- function(
 perform_request <- function(
   resource,
   params,
-  base_url = "https://financialmodelingprep.com/api/",
-  api_version = "v3"
+  base_url = "https://financialmodelingprep.com/",
+  api_version = "stable"
 ) {
+  if (api_version %in% c("v1", "v2", "v3")) {
+    base_url <- paste0(base_url, "api/")
+  }
+
   req <- create_request(base_url, api_version, resource, params)
 
   resp <- req |>
