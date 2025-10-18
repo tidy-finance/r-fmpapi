@@ -96,14 +96,6 @@ endpoint.
 fmp_get(resource = "cash-flow-statement", symbol = "AAPL")
 ```
 
-Most free endpoints live under API version 3, but you can also control
-the api version in `fmp_get()`, which you need for some paid endpoints.
-For instance, the `symbol_change` endpoint:
-
-``` r
-fmp_get(resource = "symbol_change", api_version = "v4")
-```
-
 ## Relation to Existing Packages
 
 There are two existing R packages that also provide an interface to the

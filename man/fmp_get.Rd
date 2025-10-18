@@ -8,7 +8,7 @@ fmp_get(
   resource,
   symbol = NULL,
   params = list(),
-  api_version = "v3",
+  api_version = "stable",
   snake_case = TRUE
 )
 }
