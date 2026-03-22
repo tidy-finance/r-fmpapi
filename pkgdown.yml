@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2026-03-22T14:27Z
+last_built: 2026-03-22T14:56Z
 urls:
   reference: https://tidy-finance.github.io/r-fmpapi/reference
   article: https://tidy-finance.github.io/r-fmpapi/articles

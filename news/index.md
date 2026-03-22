@@ -5,6 +5,7 @@
 ### Bug fixes
 
 - Allow `params` to handle vectors of length \> 1.
+- Handle empty and invalid date strings.
 
 ## fmpapi 1.0.0
 
