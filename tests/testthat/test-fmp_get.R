@@ -179,17 +179,143 @@ test_that("convert_column_names converts names to snake_case", {
 })
 
 
-test_that("convert_column_types updates column types", {
+test_that("calendarYear columns are converted to integer", {
   df <- data.frame(
-    calendarYear = c("2023", "2022"),
-    date = c("2023-12-31", "2022-12-31"),
-    value = c(12345, 54321)
+    calendarYear = c("2020", "2021", "2022"),
+    stringsAsFactors = FALSE
   )
-  df_converted <- convert_column_types(df)
+  result <- convert_column_types(df)
+  expect_type(result$calendarYear, "integer")
+  expect_equal(result$calendarYear, c(2020L, 2021L, 2022L))
+})
 
-  expect_type(df_converted$calendarYear, "integer")
-  expect_s3_class(df_converted$date, "Date")
-  expect_type(df_converted$value, "double")
+test_that("multiple calendarYear columns are all converted", {
+  df <- data.frame(
+    calendarYear = c("2020", "2021"),
+    calendarYear_end = c("2022", "2023"),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_type(result$calendarYear, "integer")
+  expect_type(result$calendarYear_end, "integer")
+})
+
+test_that("date-only strings become Date class", {
+  df <- data.frame(
+    filingDate = c("2023-01-15", "2023-06-30"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_s3_class(result$filingDate, "Date")
+  expect_equal(result$filingDate, as.Date(c("2023-01-15", "2023-06-30")))
+})
+
+test_that("datetime strings with nonzero time become POSIXct", {
+  df <- data.frame(
+    updatedDate = c("2023-01-15 14:30:00", "2023-06-30 09:00:00"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_s3_class(result$updatedDate, "POSIXct")
+  expect_equal(
+    result$updatedDate,
+    as.POSIXct(c("2023-01-15 14:30:00", "2023-06-30 09:00:00"), tz = "UTC")
+  )
+})
+
+test_that("datetime strings with all-zero times become Date", {
+  df <- data.frame(
+    acceptedDate = c("2023-01-15 00:00:00", "2023-06-30 00:00:00"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_s3_class(result$acceptedDate, "Date")
+  expect_equal(result$acceptedDate, as.Date(c("2023-01-15", "2023-06-30")))
+})
+
+test_that("empty strings are treated as NA in date columns", {
+  df <- data.frame(
+    filingDate = c("2023-01-15", "", "2023-03-20"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_s3_class(result$filingDate, "Date")
+  expect_true(is.na(result$filingDate[2]))
+  expect_equal(
+    result$filingDate[c(1, 3)],
+    as.Date(c("2023-01-15", "2023-03-20"))
+  )
+})
+
+test_that("all-NA date column returns Date vector of NAs", {
+  df <- data.frame(filingDate = c("", "", ""), stringsAsFactors = FALSE)
+  result <- convert_column_types(df)
+  expect_s3_class(result$filingDate, "Date")
+  expect_true(all(is.na(result$filingDate)))
+})
+
+test_that("unparseable date strings return Date NAs", {
+  df <- data.frame(
+    filingDate = c("not-a-date", "also-bad"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_s3_class(result$filingDate, "Date")
+  expect_true(all(is.na(result$filingDate)))
+})
+
+test_that("columns matching 'date' (lowercase) are also converted", {
+  df <- data.frame(
+    trade_date = c("2023-05-01", "2023-05-02"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_s3_class(result$trade_date, "Date")
+})
+
+test_that("columns not matching date or calendarYear are left untouched", {
+  df <- data.frame(
+    ticker = c("AAPL", "GOOG"),
+    revenue = c(100.5, 200.3),
+    filingDate = c("2023-01-01", "2023-06-01"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_type(result$ticker, "character")
+  expect_type(result$revenue, "double")
+  expect_equal(result$ticker, c("AAPL", "GOOG"))
+  expect_equal(result$revenue, c(100.5, 200.3))
+})
+
+test_that("mixed NA and datetime values preserve POSIXct when time component exists", {
+  df <- data.frame(
+    updatedDate = c("2023-01-15 10:30:00", "", "2023-03-20 00:00:00"),
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_s3_class(result$updatedDate, "POSIXct")
+  expect_true(is.na(result$updatedDate[2]))
+})
+
+test_that("single-row data frame works", {
+  df <- data.frame(
+    calendarYear = "2024",
+    filingDate = "2024-03-15",
+    stringsAsFactors = FALSE
+  )
+  result <- convert_column_types(df)
+  expect_type(result$calendarYear, "integer")
+  expect_s3_class(result$filingDate, "Date")
+})
+
+test_that("zero-row data frame does not error", {
+  df <- data.frame(
+    calendarYear = character(0),
+    filingDate = character(0),
+    stringsAsFactors = FALSE
+  )
+  expect_no_error(convert_column_types(df))
 })
 
 test_that("returns resource when symbol is NULL (no validation called)", {
