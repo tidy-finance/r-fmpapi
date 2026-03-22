@@ -72,26 +72,98 @@
 </h2>
 <p>Before using the package, you need to set your Financial Modeling Prep API key. You can set it using the <code><a href="reference/fmp_set_api_key.html">fmp_set_api_key()</a></code> function, which saves the key to your <code>.Renviron</code> file for future use (either in your project or home folder).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidy-finance/r-fmpapi" class="external-link">fmpapi</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/fmp_set_api_key.html">fmp_set_api_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_set_api_key.html">fmp_set_api_key</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tidy-finance/r-fmpapi" class="external-link">fmpapi</a></span><span class="op">)</span></span></code></pre></div>
 <p>Since the FMP API has a myriad of endpoints and parameters, the package provides a single function to handle requests: <code><a href="reference/fmp_get.html">fmp_get()</a></code>.</p>
 <p>You can retrieve a company’s profile by providing its stock symbol to the <code>profile</code> endpoint:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"profile"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span></code></pre></div>
-<p>To retrieve the balance sheet statements for a company, use the <code>balance-sheet-statement</code> endpoint. You can specify whether to retrieve annual or quarterly data using the <code>period</code> parameter and the number of records via <code>limit</code>. Note that you need a paid account for quarterly data.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"balance-sheet-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span>, params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>period <span class="op">=</span> <span class="st">"annual"</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The <code>income-statement</code> endpoint allows you to retrieve income statements for a specific stock symbol.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"profile"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 36</span></span>
+<span><span class="co">#&gt;   symbol price    market_cap  beta last_dividend range  change change_percentage</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;             &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 AAPL    248. 3644938780583  1.12          1.04 169.2…  -0.97            -0.390</span></span>
+<span><span class="co">#&gt; # ℹ 28 more variables: volume &lt;int&gt;, average_volume &lt;int&gt;, company_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   currency &lt;chr&gt;, cik &lt;chr&gt;, isin &lt;chr&gt;, cusip &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   exchange_full_name &lt;chr&gt;, exchange &lt;chr&gt;, industry &lt;chr&gt;, website &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   description &lt;chr&gt;, ceo &lt;chr&gt;, sector &lt;chr&gt;, country &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   full_time_employees &lt;chr&gt;, phone &lt;chr&gt;, address &lt;chr&gt;, city &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   state &lt;chr&gt;, zip &lt;chr&gt;, image &lt;chr&gt;, ipo_date &lt;date&gt;, default_image &lt;lgl&gt;,</span></span>
+<span><span class="co">#&gt; #   is_etf &lt;lgl&gt;, is_actively_trading &lt;lgl&gt;, is_adr &lt;lgl&gt;, is_fund &lt;lgl&gt;</span></span></code></pre></div>
+<p>To retrieve the balance sheet statements for a company, use the <code>balance-sheet-statement</code> endpoint. You can specify whether to retrieve annual or quarterly data using the <code>period</code> parameter and the number of records via <code>limit</code>. Note that you need a paid account for quarterly data.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"income-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span></code></pre></div>
-<p>You can fetch cash flow statements using the <code>cash-flow-statement</code> endpoint.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span></span>
+<span>  resource <span class="op">=</span> <span class="st">"balance-sheet-statement"</span>,</span>
+<span>  symbol <span class="op">=</span> <span class="st">"AAPL"</span>,</span>
+<span>  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>period <span class="op">=</span> <span class="st">"annual"</span>, limit <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 61</span></span>
+<span><span class="co">#&gt;   date       symbol reported_currency cik        filing_date accepted_date      </span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;      &lt;date&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1 2025-09-27 AAPL   USD               0000320193 2025-10-31  2025-10-31 06:01:26</span></span>
+<span><span class="co">#&gt; 2 2024-09-28 AAPL   USD               0000320193 2024-11-01  2024-11-01 06:01:36</span></span>
+<span><span class="co">#&gt; 3 2023-09-30 AAPL   USD               0000320193 2023-11-03  2023-11-02 18:08:27</span></span>
+<span><span class="co">#&gt; 4 2022-09-24 AAPL   USD               0000320193 2022-10-28  2022-10-27 18:01:14</span></span>
+<span><span class="co">#&gt; 5 2021-09-25 AAPL   USD               0000320193 2021-10-29  2021-10-28 18:04:28</span></span>
+<span><span class="co">#&gt; # ℹ 55 more variables: fiscal_year &lt;chr&gt;, period &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   cash_and_cash_equivalents &lt;dbl&gt;, short_term_investments &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   cash_and_short_term_investments &lt;dbl&gt;, net_receivables &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   accounts_receivables &lt;dbl&gt;, other_receivables &lt;dbl&gt;, inventory &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   prepaids &lt;int&gt;, other_current_assets &lt;dbl&gt;, total_current_assets &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   property_plant_equipment_net &lt;dbl&gt;, goodwill &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   intangible_assets &lt;int&gt;, goodwill_and_intangible_assets &lt;int&gt;, …</span></span></code></pre></div>
+<p>The <code>income-statement</code> endpoint allows you to retrieve income statements for a specific stock symbol.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"cash-flow-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"income-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 39</span></span>
+<span><span class="co">#&gt;   date       symbol reported_currency cik        filing_date accepted_date      </span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;      &lt;date&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1 2025-09-27 AAPL   USD               0000320193 2025-10-31  2025-10-31 06:01:26</span></span>
+<span><span class="co">#&gt; 2 2024-09-28 AAPL   USD               0000320193 2024-11-01  2024-11-01 06:01:36</span></span>
+<span><span class="co">#&gt; 3 2023-09-30 AAPL   USD               0000320193 2023-11-03  2023-11-02 18:08:27</span></span>
+<span><span class="co">#&gt; 4 2022-09-24 AAPL   USD               0000320193 2022-10-28  2022-10-27 18:01:14</span></span>
+<span><span class="co">#&gt; 5 2021-09-25 AAPL   USD               0000320193 2021-10-29  2021-10-28 18:04:28</span></span>
+<span><span class="co">#&gt; # ℹ 33 more variables: fiscal_year &lt;chr&gt;, period &lt;chr&gt;, revenue &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   cost_of_revenue &lt;dbl&gt;, gross_profit &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   research_and_development_expenses &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   general_and_administrative_expenses &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   selling_and_marketing_expenses &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   selling_general_and_administrative_expenses &lt;dbl&gt;, other_expenses &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   operating_expenses &lt;dbl&gt;, cost_and_expenses &lt;dbl&gt;, …</span></span></code></pre></div>
+<p>You can fetch cash flow statements using the <code>cash-flow-statement</code> endpoint.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span>resource <span class="op">=</span> <span class="st">"cash-flow-statement"</span>, symbol <span class="op">=</span> <span class="st">"AAPL"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 5 × 47</span></span>
+<span><span class="co">#&gt;   date       symbol reported_currency cik        filing_date accepted_date      </span></span>
+<span><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;      &lt;date&gt;      &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt; 1 2025-09-27 AAPL   USD               0000320193 2025-10-31  2025-10-31 06:01:26</span></span>
+<span><span class="co">#&gt; 2 2024-09-28 AAPL   USD               0000320193 2024-11-01  2024-11-01 06:01:36</span></span>
+<span><span class="co">#&gt; 3 2023-09-30 AAPL   USD               0000320193 2023-11-03  2023-11-02 18:08:27</span></span>
+<span><span class="co">#&gt; 4 2022-09-24 AAPL   USD               0000320193 2022-10-28  2022-10-27 18:01:14</span></span>
+<span><span class="co">#&gt; 5 2021-09-25 AAPL   USD               0000320193 2021-10-29  2021-10-28 18:04:28</span></span>
+<span><span class="co">#&gt; # ℹ 41 more variables: fiscal_year &lt;chr&gt;, period &lt;chr&gt;, net_income &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   depreciation_and_amortization &lt;dbl&gt;, deferred_income_tax &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   stock_based_compensation &lt;dbl&gt;, change_in_working_capital &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   accounts_receivables &lt;dbl&gt;, inventory &lt;dbl&gt;, accounts_payables &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   other_working_capital &lt;dbl&gt;, other_non_cash_items &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   net_cash_provided_by_operating_activities &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   investments_in_property_plant_and_equipment &lt;dbl&gt;, …</span></span></code></pre></div>
+<p>You can fetch market capitalization for multiple stocks:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/fmp_get.html">fmp_get</a></span><span class="op">(</span></span>
+<span>  <span class="st">"market-capitalization-batch"</span>,</span>
+<span>  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"symbols"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AAPL"</span>, <span class="st">"MSFT"</span>, <span class="st">"GOOGL"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span><span class="co">#&gt;   symbol date          market_cap</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;  &lt;date&gt;             &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 AAPL   2026-03-20 3644938780583</span></span>
+<span><span class="co">#&gt; 2 MSFT   2026-03-20 2835625328100</span></span>
+<span><span class="co">#&gt; 3 GOOGL  2026-03-20 3641197199262</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="relation-to-existing-packages">Relation to Existing Packages<a class="anchor" aria-label="anchor" href="#relation-to-existing-packages"></a>
@@ -168,7 +240,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
