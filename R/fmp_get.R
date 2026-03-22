@@ -185,7 +185,11 @@ create_request <- function(base_url, api_version, resource, params) {
   request(base_url) |>
     req_url_path_append(api_version) |>
     req_url_path_append(resource) |>
-    req_url_query(apikey = Sys.getenv("FMP_API_KEY"), !!!params) |>
+    req_url_query(
+      apikey = Sys.getenv("FMP_API_KEY"),
+      !!!params,
+      .multi = "comma"
+    ) |>
     req_user_agent(
       "fmpapi R package (https://github.com/tidy-finance/r-fmpapi)"
     ) |>

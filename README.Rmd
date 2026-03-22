@@ -50,37 +50,52 @@ pak::pak("tidy-finance/r-fmpapi")
 Before using the package, you need to set your Financial Modeling Prep API key. You can set it using the `fmp_set_api_key()` function, which saves the key to your `.Renviron` file for future use (either in your project or home folder).
 
 ```r
-library(fmpapi)
-
 fmp_set_api_key()
 ```
 
 ## Usage
 
+```{r}
+library(fmpapi)
+```
+
 Since the FMP API has a myriad of endpoints and parameters, the package provides a single function to handle requests: `fmp_get()`.
 
 You can retrieve a company’s profile by providing its stock symbol to the `profile` endpoint:
 
-```r
+```{r}
 fmp_get(resource = "profile", symbol = "AAPL")
 ```
 
 To retrieve the balance sheet statements for a company, use the `balance-sheet-statement` endpoint. You can specify whether to retrieve annual or quarterly data using the `period` parameter and the number of records via `limit`. Note that you need a paid account for quarterly data. 
 
-```r
-fmp_get(resource = "balance-sheet-statement", symbol = "AAPL", params = list(period = "annual", limit = 5))
+```{r}
+fmp_get(
+  resource = "balance-sheet-statement",
+  symbol = "AAPL",
+  params = list(period = "annual", limit = 5)
+)
 ```
 
 The `income-statement` endpoint allows you to retrieve income statements for a specific stock symbol. 
 
-```r
+```{r}
 fmp_get(resource = "income-statement", symbol = "AAPL")
 ```
 
 You can fetch cash flow statements using the `cash-flow-statement` endpoint.
 
-```r
+```{r}
 fmp_get(resource = "cash-flow-statement", symbol = "AAPL")
+```
+
+You can fetch market capitalization for multiple stocks:
+
+```{r}
+fmp_get(
+  "market-capitalization-batch",
+  params = list("symbols" = c("AAPL", "MSFT", "GOOGL"))
+)
 ```
 
 ## Relation to Existing Packages
