@@ -276,8 +276,15 @@ convert_column_types <- function(df) {
     mutate(
       across(contains("calendarYear"), as.integer),
       across(c(contains("Date"), contains("date")), function(x) {
-        posix_converted <- as.POSIXct(x, tz = "UTC")
-        has_time <- any(format(posix_converted, "%H:%M:%S") != "00:00:00")
+        x[x == ""] <- NA_character_
+        posix_converted <- as.POSIXct(x, tz = "UTC", optional = TRUE)
+        if (all(is.na(posix_converted))) {
+          return(as.Date(rep(NA, length(x))))
+        }
+        has_time <- any(
+          format(posix_converted, "%H:%M:%S") != "00:00:00",
+          na.rm = TRUE
+        )
         if (!has_time) {
           return(as.Date(x))
         }
