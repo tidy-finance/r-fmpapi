@@ -4,6 +4,7 @@
 
 - Allow `params` to handle vectors of length > 1.
 - Handle empty and invalid date strings.
+- Switch to warning in response body validation to avoid unfriendly errors. 
 
 # fmpapi 1.0.0
 

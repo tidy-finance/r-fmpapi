@@ -153,7 +153,7 @@ test_that("perform_request handles empty responses", {
     with_mocked_responses(
       my_mock,
       {
-        expect_error(
+        expect_warning(
           perform_request(resource = "invalid-resource", params = list()),
           "Response body is empty."
         )

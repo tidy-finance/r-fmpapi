@@ -242,7 +242,7 @@ validate_limit <- function(limit) {
 #' @noRd
 validate_body <- function(body) {
   if (length(body) == 0) {
-    cli::cli_abort(
+    cli::cli_warn(
       "Response body is empty. Check your resource and parameter specification."
     )
   }
