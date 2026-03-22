@@ -288,7 +288,7 @@ test_that("columns not matching date or calendarYear are left untouched", {
   expect_equal(result$revenue, c(100.5, 200.3))
 })
 
-test_that("mixed NA and datetime values preserve POSIXct when time component exists", {
+test_that("NA & datetime values preserve POSIXct when time component exists", {
   df <- data.frame(
     updatedDate = c("2023-01-15 10:30:00", "", "2023-03-20 00:00:00"),
     stringsAsFactors = FALSE
