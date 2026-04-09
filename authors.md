@@ -8,16 +8,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/tidy-finance/r-fmpapi/blob/v1.0.1/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/tidy-finance/r-fmpapi/blob/main/DESCRIPTION)
 
 Scheuch C (2026). *fmpapi: Flexible Client for the 'Financial Modeling
-Prep' API*. R package version 1.0.1,
+Prep' API*. R package version 1.0.1.9000,
 <https://github.com/tidy-finance/r-fmpapi>.
 
     @Manual{,
       title = {fmpapi: Flexible Client for the 'Financial Modeling Prep' API},
       author = {Christoph Scheuch},
       year = {2026},
-      note = {R package version 1.0.1},
+      note = {R package version 1.0.1.9000},
       url = {https://github.com/tidy-finance/r-fmpapi},
     }
