@@ -75,7 +75,7 @@ fmp_get(resource = "profile", symbol = "AAPL")
 #> # A tibble: 1 × 36
 #>   symbol price    market_cap  beta last_dividend range  change change_percentage
 #>   <chr>  <dbl>         <dbl> <dbl>         <dbl> <chr>   <dbl>             <dbl>
-#> 1 AAPL    248. 3644938780583  1.12          1.04 169.2…  -0.97            -0.390
+#> 1 AAPL    259. 3801177298586  1.11          1.04 169.2…  -0.28            -0.108
 #> # ℹ 28 more variables: volume <int>, average_volume <int>, company_name <chr>,
 #> #   currency <chr>, cik <chr>, isin <chr>, cusip <chr>,
 #> #   exchange_full_name <chr>, exchange <chr>, industry <chr>, website <chr>,
@@ -168,9 +168,9 @@ fmp_get(
 #> # A tibble: 3 × 3
 #>   symbol date          market_cap
 #>   <chr>  <date>             <dbl>
-#> 1 AAPL   2026-03-20 3644938780583
-#> 2 MSFT   2026-03-20 2835625328100
-#> 3 GOOGL  2026-03-20 3641197199262
+#> 1 AAPL   2026-04-09 3801544746705
+#> 2 MSFT   2026-04-09 2749228123050
+#> 3 GOOGL  2026-04-09 3842975128370
 ```
 
 ## Relation to Existing Packages

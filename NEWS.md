@@ -1,5 +1,7 @@
 # fmpapi (development version)
 
+# fmpapi 1.0.1
+
 ## Bug fixes
 
 - Allow `params` to handle vectors of length > 1.
